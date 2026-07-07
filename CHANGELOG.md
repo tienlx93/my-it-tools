@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.07.07-153e1ef
+
+### Features
+-  add modal support + UI fix (153e1ef)
+-  self-manage fork repo + docker hub + cloud run (bfa619e)
+
+### Bug fixes
+-  fix add to favourite storage, move release pipeline (8cc081d)
+
 ## Version 2024.10.22-7ca5933
 
 ### Features
