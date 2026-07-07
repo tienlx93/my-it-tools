@@ -12,12 +12,13 @@ The project contains the following GitHub Actions workflows in the `.github/work
    - **Secrets/Env required**: None.
 2. **E2E Tests** (`e2e-tests.yml`): Runs Playwright end-to-end tests across multiple shards.
    - **Secrets/Env required**: None.
-3. **Deploy to Google Cloud Run** (`deploy.yml`): Runs on push to the `main` branch. Builds and pushes the Docker image to Docker Hub, and then deploys it to Google Cloud Run.
-   - **Secrets/Env required**: `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, `GCP_PROJECT_ID`, `GCP_SA_KEY`, `GCP_SERVICE_NAME`, and `GCP_REGION`.
-4. **Docker Nightly Release** (`docker-nightly-release.yml`): Runs daily or manually to build and push nightly Docker images to Docker Hub and GitHub Container Registry (GHCR).
+3. **Docker Nightly Release** (`docker-nightly-release.yml`): Runs daily or manually to build and push nightly Docker images to Docker Hub and GitHub Container Registry (GHCR).
    - **Secrets/Env required**: `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, and `GITHUB_TOKEN`.
-5. **Release New Versions** (`releases.yml`): Runs when a tag matching `v*.*.*` is pushed. Builds the production app, packages it, creates a GitHub Draft Release, and publishes Docker images to Docker Hub and GHCR.
-   - **Secrets/Env required**: `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, and `GITHUB_TOKEN`.
+4. **Release New Versions** (`releases.yml`): Runs when a tag matching `v*.*.*` is pushed.
+   - **Docker Release Job**: Builds and pushes production multi-platform Docker images to Docker Hub and GHCR.
+   - **GitHub Release Job**: Zips the production client-side build and drafts a GitHub release with the changelog.
+   - **Deploy Job**: Deploys the newly released Docker image to Google Cloud Run.
+   - **Secrets/Env required**: `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, `GITHUB_TOKEN`, `GCP_PROJECT_ID`, `GCP_SA_KEY`, `GCP_SERVICE_NAME`, and `GCP_REGION`.
 
 ---
 
@@ -32,7 +33,7 @@ To enable publishing to Docker Hub and deploying to Google Cloud Run, configure 
 | `DOCKERHUB_USERNAME` | Your Docker Hub account username. | `tienlx93` |
 | `DOCKERHUB_TOKEN` | A personal access token (PAT) generated from your Docker Hub settings. | *Configured* |
 | `GCP_PROJECT_ID` | Your Google Cloud Platform project ID. | `my-it-tools` |
-| `GCP_SA_KEY` | The JSON key of a GCP Service Account with permissions to deploy to Cloud Run. | *Needs setup (see below)* |
+| `GCP_SA_KEY` | The JSON key of a GCP Service Account with permissions to deploy to Cloud Run. | *Configured* |
 | `GCP_SERVICE_NAME` | The name of the Google Cloud Run service. | `it-tools` |
 | `GCP_REGION` | The GCP Region where the service should deploy. | `asia-southeast1` |
 
@@ -64,7 +65,7 @@ To enable publishing to Docker Hub and deploying to Google Cloud Run, configure 
      - **Name**: `DOCKERHUB_USERNAME`
      - **Value**: `tienlx93`
    - Click **Add secret**.
-   - Click **New repository secret again.
+   - Click **New repository secret** again.
      - **Name**: `DOCKERHUB_TOKEN`
      - **Value**: *The Docker Hub access token you generated earlier*
    - Click **Add secret**.

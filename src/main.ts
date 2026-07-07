@@ -13,8 +13,14 @@ import { naive } from './plugins/naive.plugin';
 import App from './App.vue';
 import router from './router';
 import { i18nPlugin } from './plugins/i18n.plugin';
+import { polyfillStorage } from './polyfill';
 
 registerSW();
+
+if (typeof window !== 'undefined') {
+  polyfillStorage('localStorage');
+  polyfillStorage('sessionStorage');
+}
 
 const app = createApp(App);
 

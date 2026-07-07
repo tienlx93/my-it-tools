@@ -13,6 +13,7 @@ const buttonType = computed(() => (isFavorite.value ? 'primary' : 'default'));
 
 function toggleFavorite(event: MouseEvent) {
   event.preventDefault();
+  event.stopPropagation();
 
   if (toolStore.isToolFavorite({ tool })) {
     toolStore.removeToolFromFavorites({ tool });
