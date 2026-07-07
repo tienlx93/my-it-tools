@@ -1,9 +1,15 @@
+import { execSync } from 'node:child_process';
 import { $, argv } from 'zx';
 import { consola } from 'consola';
 import { rawCommitsToMarkdown } from './shared/commits.mjs';
 import { addToChangelog } from './shared/changelog.mjs';
 
 $.verbose = false;
+
+if (process.platform === 'win32') {
+  $.shell = 'powershell.exe';
+  $.prefix = '';
+}
 
 const isDryRun = argv['dry-run'] ?? false;
 
@@ -13,7 +19,25 @@ const currentShortSha = (await $`git rev-parse --short HEAD`).stdout.trim();
 const calver = now.toISOString().slice(0, 10).replace(/-/g, '.');
 const version = `${calver}-${currentShortSha}`;
 
-const { stdout: rawCommits } = await $`git log --pretty=oneline $(git describe --tags --abbrev=0)..HEAD`;
+const fromCommit = argv.from;
+let lastTag = '';
+
+if (fromCommit) {
+  lastTag = String(fromCommit).trim();
+  consola.info(`Using base commit/tag specified via --from: ${lastTag}`);
+} else {
+  try {
+    lastTag = (await $`git describe --tags --abbrev=0`).stdout.trim();
+  } catch (error) {
+    // If no tags are found, get the first commit hash of the repository
+    const firstCommit = (await $`git rev-list --max-parents=0 HEAD`).stdout.trim();
+    lastTag = firstCommit;
+    consola.info(`No tag found. Using initial commit as base: ${lastTag}`);
+  }
+}
+
+const range = `${lastTag}..HEAD`;
+const rawCommits = execSync(`git log --pretty=oneline ${range}`, { encoding: 'utf-8' });
 
 const markdown = rawCommitsToMarkdown({ rawCommits });
 
