@@ -123,7 +123,7 @@ You can populate the values in the `.env` file at the project root and then push
 1. Open your `.env` file and fill in the missing variable (`GCP_SA_KEY`):
    ```env
    DOCKERHUB_USERNAME=tienlx93
-   DOCKERHUB_TOKEN=<pat-token>
+   DOCKERHUB_TOKEN=<your-dockerhub-access-token>
    GCP_PROJECT_ID=my-it-tools
    GCP_SA_KEY={"type": "service_account", ...} # Paste full JSON key here as a single line
    GCP_SERVICE_NAME=it-tools

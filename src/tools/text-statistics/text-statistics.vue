@@ -2,7 +2,14 @@
 import { getStringSizeInBytes } from './text-statistics.service';
 import { formatBytes } from '@/utils/convert';
 
-const text = ref('');
+const props = defineProps<{ initialValue?: string }>();
+const text = ref(props.initialValue || '');
+
+watch(() => props.initialValue, (val) => {
+  if (val !== undefined) {
+    text.value = val;
+  }
+});
 </script>
 
 <template>

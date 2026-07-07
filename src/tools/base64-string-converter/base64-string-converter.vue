@@ -3,10 +3,17 @@ import { useCopy } from '@/composable/copy';
 import { base64ToText, isValidBase64, textToBase64 } from '@/utils/base64';
 import { withDefaultOnError } from '@/utils/defaults';
 
+const props = defineProps<{ initialValue?: string }>();
 const encodeUrlSafe = useStorage('base64-string-converter--encode-url-safe', false);
 const decodeUrlSafe = useStorage('base64-string-converter--decode-url-safe', false);
 
-const textInput = ref('');
+const textInput = ref(props.initialValue || '');
+
+watch(() => props.initialValue, (val) => {
+  if (val !== undefined) {
+    textInput.value = val;
+  }
+});
 const base64Output = computed(() => textToBase64(textInput.value, { makeUrlSafe: encodeUrlSafe.value }));
 const { copy: copyTextBase64 } = useCopy({ source: base64Output, text: 'Base64 string copied to the clipboard' });
 

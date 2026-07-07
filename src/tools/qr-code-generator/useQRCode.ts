@@ -6,17 +6,19 @@ export function useQRCode({
   text,
   color: { background, foreground },
   errorCorrectionLevel,
+  width,
   options,
 }: {
   text: MaybeRef<string>
   color: { foreground: MaybeRef<string>; background: MaybeRef<string> }
   errorCorrectionLevel?: MaybeRef<QRCodeErrorCorrectionLevel>
+  width?: MaybeRef<number>
   options?: QRCodeToDataURLOptions
 }) {
   const qrcode = ref('');
 
   watch(
-    [text, background, foreground, errorCorrectionLevel].filter(isRef),
+    [text, background, foreground, errorCorrectionLevel, width].filter(isRef),
     async () => {
       if (get(text)) {
         qrcode.value = await QRCode.toDataURL(get(text).trim(), {
@@ -26,6 +28,7 @@ export function useQRCode({
             ...options?.color,
           },
           errorCorrectionLevel: get(errorCorrectionLevel) ?? 'M',
+          width: get(width) ?? options?.width ?? 1024,
           ...options,
         });
       }

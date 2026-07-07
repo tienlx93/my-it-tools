@@ -29,7 +29,14 @@ import {
 import { withDefaultOnError } from '@/utils/defaults';
 import { useValidation } from '@/composable/validation';
 
-const inputDate = ref('');
+const props = defineProps<{ initialValue?: string }>();
+const inputDate = ref(props.initialValue || '');
+
+watch(() => props.initialValue, (val) => {
+  if (val !== undefined) {
+    inputDate.value = val;
+  }
+});
 
 const toDate: ToDateMapper = date => new Date(date);
 

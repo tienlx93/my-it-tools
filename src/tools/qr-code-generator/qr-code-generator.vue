@@ -3,13 +3,42 @@ import type { QRCodeErrorCorrectionLevel } from 'qrcode';
 import { useQRCode } from './useQRCode';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 
+const props = defineProps<{ initialValue?: string }>();
 const foreground = ref('#000000ff');
 const background = ref('#ffffffff');
 const errorCorrectionLevel = ref<QRCodeErrorCorrectionLevel>('medium');
 
 const errorCorrectionLevels = ['low', 'medium', 'quartile', 'high'];
 
-const text = ref('https://it-tools.tech');
+const text = ref(props.initialValue || 'https://it-tools.tech');
+
+watch(() => props.initialValue, (val) => {
+  if (val !== undefined) {
+    text.value = val;
+  }
+});
+const sizeOption = ref<'small' | 'medium' | 'big'>('small');
+
+const downloadWidth = computed(() => {
+  if (sizeOption.value === 'medium') {
+    return 1536;
+  }
+  if (sizeOption.value === 'big') {
+    return 2048;
+  }
+  return 1024;
+});
+
+const uiWidth = computed(() => {
+  if (sizeOption.value === 'medium') {
+    return 300;
+  }
+  if (sizeOption.value === 'big') {
+    return 400;
+  }
+  return 200;
+});
+
 const { qrcode } = useQRCode({
   text,
   color: {
@@ -17,7 +46,7 @@ const { qrcode } = useQRCode({
     foreground,
   },
   errorCorrectionLevel,
-  options: { width: 1024 },
+  width: downloadWidth,
 });
 
 const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-code.png' });
@@ -53,12 +82,25 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-c
             label-width="130px"
             label-align="right"
             :options="errorCorrectionLevels.map((value) => ({ label: value, value }))"
+            mb-12px
+          />
+          <c-buttons-select
+            v-model:value="sizeOption"
+            label="Size:"
+            label-position="left"
+            label-width="130px"
+            label-align="right"
+            :options="[
+              { label: 'Small (1x)', value: 'small' },
+              { label: 'Medium (1.5x)', value: 'medium' },
+              { label: 'Big (2x)', value: 'big' },
+            ]"
           />
         </n-form>
       </n-gi>
       <n-gi>
         <div flex flex-col items-center gap-3>
-          <n-image :src="qrcode" width="200" />
+          <n-image :src="qrcode" :width="uiWidth" />
           <c-button @click="download">
             Download qr-code
           </c-button>
