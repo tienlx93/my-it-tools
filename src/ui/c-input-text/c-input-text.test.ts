@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { mount, shallowMount } from '@vue/test-utils';
 import { createPinia, setActivePinia } from 'pinia';
 import _ from 'lodash';
@@ -156,5 +156,37 @@ describe('CInputText', () => {
     });
 
     expect(wrapper.get('input').attributes('data-test-id')).to.equal('TEST');
+  });
+
+  it('[prop:pasteHtml] intercepts paste event and inserts clean HTML if available', async () => {
+    const wrapper = mount(CInputText, {
+      props: {
+        pasteHtml: true,
+        multiline: true,
+        value: 'BeforeAfter',
+      },
+    });
+
+    const textarea = wrapper.get('textarea').element as HTMLTextAreaElement;
+    textarea.selectionStart = 6;
+    textarea.selectionEnd = 6;
+
+    const pasteEvent = new Event('paste');
+    Object.defineProperty(pasteEvent, 'clipboardData', {
+      value: {
+        getData: (type: string) => {
+          if (type === 'text/html') {
+            return '<!--StartFragment--><strong>Middle</strong><!--EndFragment-->';
+          }
+          return '';
+        },
+      },
+    });
+    const preventDefaultSpy = vi.spyOn(pasteEvent, 'preventDefault');
+
+    textarea.dispatchEvent(pasteEvent);
+
+    expect(preventDefaultSpy).toHaveBeenCalled();
+    expect(wrapper.emitted('update:value')?.[0][0]).to.equal('Before<strong>Middle</strong>After');
   });
 });

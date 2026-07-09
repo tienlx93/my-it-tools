@@ -31,6 +31,7 @@ const props = withDefaults(
     autosize?: boolean
     autofocus?: boolean
     monospace?: boolean
+    pasteHtml?: boolean
   }>(),
   {
     value: '',
@@ -58,6 +59,7 @@ const props = withDefaults(
     autosize: false,
     autofocus: false,
     monospace: false,
+    pasteHtml: false,
   },
 );
 const emit = defineEmits(['update:value']);
@@ -129,6 +131,58 @@ function blur() {
   }
 }
 
+function cleanHtml(html: string): string {
+  const startTag = '<!--StartFragment-->';
+  const endTag = '<!--EndFragment-->';
+  const startIndex = html.indexOf(startTag);
+  const endIndex = html.indexOf(endTag);
+
+  if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {
+    return html.substring(startIndex + startTag.length, endIndex);
+  }
+
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    if (doc && doc.body) {
+      return doc.body.innerHTML;
+    }
+  }
+  catch {
+    // ignore
+  }
+
+  return html;
+}
+
+function handlePaste(event: ClipboardEvent) {
+  if (!props.pasteHtml) {
+    return;
+  }
+
+  const rawHtml = event.clipboardData?.getData('text/html');
+  if (rawHtml) {
+    event.preventDefault();
+    const clean = cleanHtml(rawHtml);
+
+    const target = event.target as HTMLTextAreaElement | HTMLInputElement;
+    if (target) {
+      const start = target.selectionStart ?? 0;
+      const end = target.selectionEnd ?? 0;
+      const text = target.value;
+
+      const before = text.substring(0, start);
+      const after = text.substring(end);
+
+      value.value = before + clean + after;
+
+      nextTick(() => {
+        target.selectionStart = target.selectionEnd = start + clean.length;
+      });
+    }
+  }
+}
+
 onMounted(() => {
   if (autofocus.value) {
     focus();
@@ -171,6 +225,7 @@ defineExpose({
           :autocorrect="autocorrect ?? (rawText ? 'off' : undefined)"
           :spellcheck="spellcheck ?? (rawText ? false : undefined)"
           :rows="rows"
+          @paste="handlePaste"
         />
 
         <input
@@ -192,6 +247,7 @@ defineExpose({
           :autocomplete="autocomplete ?? (rawText ? 'off' : undefined)"
           :autocorrect="autocorrect ?? (rawText ? 'off' : undefined)"
           :spellcheck="spellcheck ?? (rawText ? false : undefined)"
+          @paste="handlePaste"
         >
 
         <c-button v-if="clearable && value" variant="text" circle size="small" @click="value = ''">
