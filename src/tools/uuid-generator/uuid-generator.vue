@@ -47,7 +47,7 @@ const { copy } = useCopy({ source: uuids, text: 'UUIDs copied to the clipboard' 
 
 <template>
   <div>
-    <c-buttons-select v-model:value="version" :options="versions" label="UUID version" label-width="100px" mb-2 />
+    <c-buttons-select v-model:value="version" :options="versions as any" label="UUID version" label-width="100px" mb-2 />
 
     <div mb-2 flex items-center>
       <span w-100px>Quantity </span>

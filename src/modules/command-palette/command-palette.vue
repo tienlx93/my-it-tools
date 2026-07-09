@@ -118,7 +118,7 @@ function activateOption(option: PaletteOption) {
         <icon-mdi-search />
         {{ $t('search.label') }}
 
-        <span hidden flex-1 border border-current border-op-40 rounded border-solid px-5px py-3px sm:inline>
+        <span flex-1 border border-current border-op-40 rounded border-solid px-5px py-3px hidden sm:inline>
           {{ isMac ? 'Cmd' : 'Ctrl' }}&nbsp;+&nbsp;K
         </span>
       </span>
