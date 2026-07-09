@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.07.09-510b77c
+
+### Features
+-  implement extension background worker and content injector (d4050e5)
+-  pass input query param to RouterView components (1a5d79a)
+-  use hash routing in chrome extension environment (770c85b)
+-  add isModalMode to style store with tests (04a4f03)
+- **command-palette**: strict logical AND fuzzy search for multi-word queries (d91d21b)
+- **json-prettify**: responsive side-by-side layout, JSON5, scrollable output, and JSONPath querying (b456382)
+-  styled qr code generator (5844d2e)
+
+### Bug fixes
+-  correct route paths for qr and datetime in background.ts (a773e56)
+-  arrow function single argument parentheses in background.ts (a1141fc)
+- **date-time-converter**: strict unix and millisecond timestamp detection (issue #46) (f5a85da)
+
+### Refactoring
+-  extract vite plugins to shared base config (86cfca2)
+
+### Chores
+-  add extension to release workflow and update README (bba4a92)
+-  commit design, lint fix (b854820)
+-  ignore dist-ext and update project guidelines (7f076e5)
+-  setup extension manifest, build targets, and build scripts (f88420a)
+-  untrack and gitignore auto-generated d.ts files (be3e32c)
+- **deps**: renovate minor dependencies (c27715b)
+- **deps**: replace dependency @tsconfig/node18 with @tsconfig/node20 (7d80094)
+-  configure renovate bot rules and schedules (7891297)
+-  update runs-on to ubuntu-22.04 to fix playwright installation (a4fa0bb)
+
+### Other
+-  Merge pull request #48 from tienlx93/feature/chrome-extension (bb76d05)
+-  Merge pull request #47 from tienlx93/feat/json-format-validate-responsive (3e84d6e)
+-  Merge pull request #2 from tienlx93/renovate/tsconfig-node18-replacement (4bd327b)
+
+### Documentation
+- **changelog**: update changelog for 2026.07.09-bb76d05 (510b77c)
+-  add implementation plan for JSON Format/Validate responsive layout (9146b53)
+-  add design spec for JSON Format/Validate responsive layout (2b52f69)
+
+### Style
+-  hide navigation and adjust scroll padding in modal mode (5d553ba)
+
 ## Version 2026.07.09-bb76d05
 
 ### Features
