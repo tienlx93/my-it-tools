@@ -1,5 +1,4 @@
 import type { Tiktoken } from 'js-tiktoken';
-import { getEncoding } from 'js-tiktoken';
 
 export interface ModelPricing {
   provider: string
@@ -35,27 +34,29 @@ export function getStringSizeInBytes(text: string) {
 let cl100kEncoder: Tiktoken | null = null;
 let o200kEncoder: Tiktoken | null = null;
 
-function getEncoder(encoding: 'cl100k_base' | 'o200k_base'): Tiktoken {
+async function getEncoder(encoding: 'cl100k_base' | 'o200k_base'): Promise<Tiktoken> {
   if (encoding === 'cl100k_base') {
     if (!cl100kEncoder) {
+      const { getEncoding } = await import('js-tiktoken');
       cl100kEncoder = getEncoding('cl100k_base');
     }
     return cl100kEncoder;
   }
   else {
     if (!o200kEncoder) {
+      const { getEncoding } = await import('js-tiktoken');
       o200kEncoder = getEncoding('o200k_base');
     }
     return o200kEncoder;
   }
 }
 
-export function getTokenCount(text: string, encoding: 'cl100k_base' | 'o200k_base'): number {
+export async function getTokenCount(text: string, encoding: 'cl100k_base' | 'o200k_base'): Promise<number> {
   if (!text) {
     return 0;
   }
   try {
-    const encoder = getEncoder(encoding);
+    const encoder = await getEncoder(encoding);
     return encoder.encode(text).length;
   }
   catch (e) {

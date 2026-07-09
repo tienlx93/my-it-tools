@@ -11,12 +11,18 @@ watch(() => props.initialValue, (val) => {
   }
 });
 
-// Calculate tokens reactively for both encoders
-const tokenCounts = computed(() => {
-  return {
-    cl100k_base: getTokenCount(text.value, 'cl100k_base'),
-    o200k_base: getTokenCount(text.value, 'o200k_base'),
-  };
+// Token counts: updated asynchronously since js-tiktoken is lazy-loaded on first use
+const tokenCounts = ref({ cl100k_base: 0, o200k_base: 0 });
+const tokenizerReady = ref(false);
+
+watchEffect(async () => {
+  const t = text.value;
+  const [cl100k, o200k] = await Promise.all([
+    getTokenCount(t, 'cl100k_base'),
+    getTokenCount(t, 'o200k_base'),
+  ]);
+  tokenCounts.value = { cl100k_base: cl100k, o200k_base: o200k };
+  tokenizerReady.value = true;
 });
 
 // Est. Costs array for the UI table
@@ -85,13 +91,16 @@ function getProviderTagType(provider: string): 'default' | 'error' | 'primary' |
               <code text-xs>{{ model.encoding === 'o200k_base' ? 'o200k_base' : 'cl100k_base (approx)' }}</code>
             </td>
             <td font-bold>
-              {{ model.tokens.toLocaleString() }}
+              <span v-if="tokenizerReady">{{ model.tokens.toLocaleString() }}</span>
+              <n-skeleton v-else text width="60px" />
             </td>
             <td font-mono>
-              {{ model.formattedInputCost }}
+              <span v-if="tokenizerReady">{{ model.formattedInputCost }}</span>
+              <n-skeleton v-else text width="80px" />
             </td>
             <td font-mono>
-              {{ model.formattedOutputCost }}
+              <span v-if="tokenizerReady">{{ model.formattedOutputCost }}</span>
+              <n-skeleton v-else text width="80px" />
             </td>
           </tr>
         </tbody>

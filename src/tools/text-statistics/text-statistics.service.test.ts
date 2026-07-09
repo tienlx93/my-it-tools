@@ -13,19 +13,19 @@ describe('text-statistics', () => {
   });
 
   describe('getTokenCount', () => {
-    it('should return 0 for empty string', () => {
-      expect(getTokenCount('', 'cl100k_base')).toEqual(0);
-      expect(getTokenCount('', 'o200k_base')).toEqual(0);
+    it('should return 0 for empty string', async () => {
+      expect(await getTokenCount('', 'cl100k_base')).toEqual(0);
+      expect(await getTokenCount('', 'o200k_base')).toEqual(0);
     });
 
-    it('should count tokens for standard text using cl100k_base', () => {
+    it('should count tokens for standard text using cl100k_base', async () => {
       // "Hello world" is typically 2 tokens in cl100k_base
-      expect(getTokenCount('Hello world', 'cl100k_base')).toEqual(2);
+      expect(await getTokenCount('Hello world', 'cl100k_base')).toEqual(2);
     });
 
-    it('should count tokens for standard text using o200k_base', () => {
+    it('should count tokens for standard text using o200k_base', async () => {
       // "Hello world" is typically 2 tokens in o200k_base
-      expect(getTokenCount('Hello world', 'o200k_base')).toEqual(2);
+      expect(await getTokenCount('Hello world', 'o200k_base')).toEqual(2);
     });
   });
 
