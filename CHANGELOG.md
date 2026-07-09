@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.07.09-5a507c7
+
+### Features
+- **new tool**: implement html-to-markdown and update ui components (8753104)
+- **new tool**: implement table to markdown generator (ed2d047)
+
+### Bug fixes
+-  type check (5a507c7)
+
+### Chores
+-  remaining configurations and release pipeline updates (413bf42)
+
 ## Version 2026.07.07-d643824
 
 ### Bug fixes
