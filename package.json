@@ -75,6 +75,7 @@
     "iarna-toml-esm": "^3.0.5",
     "ibantools": "^4.3.3",
     "js-base64": "^3.7.6",
+    "js-tiktoken": "^1.0.21",
     "json5": "^2.2.3",
     "jsonpath-plus": "^10.4.0",
     "jwt-decode": "^3.1.2",

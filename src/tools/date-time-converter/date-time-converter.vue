@@ -35,6 +35,7 @@ const inputDate = ref(props.initialValue || '');
 watch(() => props.initialValue, (val) => {
   if (val !== undefined) {
     inputDate.value = val;
+    onDateInputChanged(val);
   }
 });
 

@@ -25,8 +25,8 @@
   ],
   "permissions": ["contextMenus", "activeTab"],
   "icons": {
-    "16":  "favicon-16x16.png",
-    "32":  "favicon-32x32.png",
+    "16": "favicon-16x16.png",
+    "32": "favicon-32x32.png",
     "128": "android-chrome-192x192.png"
   }
 }
