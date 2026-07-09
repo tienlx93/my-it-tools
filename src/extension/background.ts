@@ -64,6 +64,6 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       action: 'open-tool',
       route: targetRoute,
       input: payload,
-    });
+    }).catch(err => console.warn(err));
   }
 });
