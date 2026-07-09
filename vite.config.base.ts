@@ -46,7 +46,7 @@ export function createPlugins({ pwa = true, baseUrl = '/' } = {}) {
     vueJsx(),
     markdown(),
     svgLoader(),
-    pwa && VitePWA({
+    pwa ? VitePWA({
       registerType: 'autoUpdate',
       strategies: 'generateSW',
       workbox: {
@@ -86,7 +86,19 @@ export function createPlugins({ pwa = true, baseUrl = '/' } = {}) {
           },
         ],
       },
-    }),
+    }) : {
+      name: 'virtual-pwa-register',
+      resolveId(id) {
+        if (id === 'virtual:pwa-register') {
+          return '\0virtual:pwa-register';
+        }
+      },
+      load(id) {
+        if (id === '\0virtual:pwa-register') {
+          return 'export function registerSW() { return () => {}; }';
+        }
+      },
+    },
     Components({
       dirs: ['src/'],
       extensions: ['vue', 'md'],
