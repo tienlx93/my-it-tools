@@ -409,10 +409,11 @@ tools:
       Convert an IP address into decimal, binary, hexadecimal, or even an IPv6
       representation of it.
   text-statistics:
-    title: Text statistics
+    title: Text & Token Statistics
     description: >-
-      Get information about a text, the number of characters, the number of
-      words, its size in bytes, ...
+      Analyze your text with character, word, line, and byte counts — plus
+      real-time LLM token counts and estimated API costs across OpenAI, Anthropic,
+      and Google Gemini models.
   text-to-nato-alphabet:
     title: Text to NATO alphabet
     description: Transform text into the NATO phonetic alphabet for oral transmission.

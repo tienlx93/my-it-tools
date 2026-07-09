@@ -77,7 +77,7 @@ export const useCommandPaletteStore = defineStore('command-palette', () => {
     if (!trimmed) {
       return '';
     }
-    return trimmed.split(/\s+/).map(word => `'${word}`).join(' ');
+    return trimmed.split(/\s+/).join(' ');
   });
 
   const { searchResult } = useFuzzySearch({
