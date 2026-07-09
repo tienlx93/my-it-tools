@@ -77,6 +77,12 @@ jobs:
       - name: Zip the app
         run: zip -r my-it-tools-${{ env.RELEASE_VERSION }}.zip dist/*
 
+      - name: Build extension
+        run: pnpm build:ext
+
+      - name: Zip extension
+        run: zip -r my-it-tools-ext-${{ env.RELEASE_VERSION }}.zip dist-ext/*
+
       - name: Get changelog
         id: changelog
         run: |
@@ -89,7 +95,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          files: my-it-tools-${{ env.RELEASE_VERSION }}.zip
+          files: |
+            my-it-tools-${{ env.RELEASE_VERSION }}.zip
+            my-it-tools-ext-${{ env.RELEASE_VERSION }}.zip
           tag_name: v${{ env.RELEASE_VERSION }}
           draft: true
           prerelease: false
