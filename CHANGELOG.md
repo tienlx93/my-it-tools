@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.07.09-e8bb001
+
+### Features
+-  enrich text-statistics tool with LLM token count and cost calculator (ab902e9)
+
+### Bug fixes
+-  improve command palette search and update text-statistics title/description (e8bb001)
+
+### Documentation
+-  add updated design spec and implementation plan (fb07f15)
+-  add design spec for LLM token counter and pricing (7b84d62)
+
 ## Version 2026.07.09-d695fc9
 
 ### Chores
