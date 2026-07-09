@@ -39,3 +39,7 @@ gcp-key.json
 
 .superpowers/
 .playwright/
+
+# Auto-generated type declaration files
+components.d.ts
+auto-imports.d.ts
