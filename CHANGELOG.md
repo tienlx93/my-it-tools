@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.07.09-d695fc9
+
+### Chores
+-  use glob pattern for release assets in github workflow (d695fc9)
+
 ## Version 2026.07.09-510b77c
 
 ### Features
