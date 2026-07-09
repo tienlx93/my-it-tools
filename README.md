@@ -30,6 +30,27 @@ docker run -d --name my-it-tools --restart unless-stopped -p 8080:80 tienlx93/my
 docker run -d --name my-it-tools --restart unless-stopped -p 8080:80 ghcr.io/tienlx93/my-it-tools:latest
 ```
 
+## Chrome Extension
+
+You can use `my-it-tools` directly on any web page via a Chrome Extension. Highlight text or right-click links to open developer tools (QR Code, Text Stats, Date-Time, Base64) in an in-page modal.
+
+### Install from Release
+
+1. Download `my-it-tools-ext-vX.X.X.zip` from the [Releases](https://github.com/tienlx93/my-it-tools/releases) page.
+2. Unzip the archive.
+3. In your browser, navigate to `chrome://extensions`.
+4. Enable **Developer mode** in the top-right corner.
+5. Click **Load unpacked** and select the unzipped directory.
+
+### Build from Source
+
+1. Clone the repository and install dependencies: `pnpm install`.
+2. Compile and package the extension:
+   ```sh
+   pnpm build:ext
+   ```
+3. Go to `chrome://extensions`, enable **Developer mode**, and click **Load unpacked**, choosing the `dist-ext/` output directory.
+
 ## Contribute
 
 ### Recommended IDE Setup

@@ -41,7 +41,12 @@ Welcome to `my-it-tools`! This guide outlines the project structure, architectur
 - Container maximum width is set to `1200px` on desktop.
 - Components are designed to be responsive, scaling up to `100%` width in single-column mode or wrapping side-by-side with a base width of `600px`.
 
+### Task Sizing & Workflows
+- Tasks must be right-sized: a task should be large enough to represent a meaningful, independent feature or change.
+- A task that only changes a few lines of code (e.g., 3 lines) should not go through the full separate workflow of TDD, subagent dispatches, and multi-stage reviews. Combining small, related modifications into a single cohesive task is preferred to optimize speed and efficiency.
+
 ### Verification Checklist before Completion
 1. **Run Linter:** `pnpm lint` must pass cleanly without warnings.
 2. **Typecheck:** `pnpm typecheck` must pass with zero compilation errors.
 3. **Run Unit Tests:** `npx vitest run --environment jsdom` must succeed with all tests passing.
+

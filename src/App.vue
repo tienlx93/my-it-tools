@@ -156,7 +156,9 @@ onUnmounted(() => {
     <NMessageProvider placement="bottom">
       <NNotificationProvider placement="bottom-right">
         <component :is="layout">
-          <RouterView />
+          <RouterView v-slot="{ Component }">
+            <component :is="Component" :initial-value="route.query.input as string" />
+          </RouterView>
         </component>
 
         <!-- Floating context dropdown -->

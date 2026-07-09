@@ -90,7 +90,7 @@ const tools = computed<ToolCategory[]>(() => [
     </template>
 
     <template #content>
-      <div flex items-center justify-center gap-2>
+      <div v-if="!styleStore.isModalMode" flex items-center justify-center gap-2>
         <c-button
           circle
           variant="text"
