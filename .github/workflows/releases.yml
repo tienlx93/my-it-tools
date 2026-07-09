@@ -5,6 +5,10 @@ on:
     tags:
       - 'v*.*.*'
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   docker-release:
     runs-on: ubuntu-latest
@@ -42,10 +46,10 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            tienlx93/my-it-tools:latest
-            tienlx93/my-it-tools:${{ env.RELEASE_VERSION }}
-            ghcr.io/tienlx93/my-it-tools:latest
-            ghcr.io/tienlx93/my-it-tools:${{ env.RELEASE_VERSION}}
+            ${{ secrets.DOCKERHUB_USERNAME }}/my-it-tools:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/my-it-tools:${{ env.RELEASE_VERSION }}
+            ghcr.io/${{ github.repository_owner }}/my-it-tools:latest
+            ghcr.io/${{ github.repository_owner }}/my-it-tools:${{ env.RELEASE_VERSION }}
 
   github-release:
     runs-on: ubuntu-latest
@@ -93,11 +97,11 @@ jobs:
             ## Docker images
 
             - Docker Hub
-              - `tienlx93/my-it-tools:latest`
-              - `tienlx93/my-it-tools:${{ env.RELEASE_VERSION }}`
+              - `${{ secrets.DOCKERHUB_USERNAME }}/my-it-tools:latest`
+              - `${{ secrets.DOCKERHUB_USERNAME }}/my-it-tools:${{ env.RELEASE_VERSION }}`
             - GitHub Container Registry
-              - `ghcr.io/tienlx93/my-it-tools:latest`
-              - `ghcr.io/tienlx93/my-it-tools:${{ env.RELEASE_VERSION}}`
+              - `ghcr.io/${{ github.repository_owner }}/my-it-tools:latest`
+              - `ghcr.io/${{ github.repository_owner }}/my-it-tools:${{ env.RELEASE_VERSION}}`
 
             ## Changelog
 

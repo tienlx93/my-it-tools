@@ -36,3 +36,6 @@ salt
 
 # Google Cloud service account key
 gcp-key.json
+
+.superpowers/
+.playwright/
