@@ -41,7 +41,7 @@
     "@it-tools/bip39": "^0.0.4",
     "@it-tools/oggen": "^1.3.0",
     "@regexper/render": "^1.0.0",
-    "@sindresorhus/slugify": "^2.2.1",
+    "@sindresorhus/slugify": "^3.0.0",
     "@tabler/icons-vue": "^3.20.0",
     "@tiptap/pm": "2.1.6",
     "@tiptap/starter-kit": "2.1.6",
