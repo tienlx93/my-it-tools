@@ -47,7 +47,7 @@
     "@tiptap/starter-kit": "2.1.6",
     "@tiptap/vue-3": "2.0.3",
     "@types/figlet": "^1.5.8",
-    "@types/markdown-it": "^13.0.7",
+    "@types/markdown-it": "^14.0.0",
     "@vicons/material": "^0.12.0",
     "@vicons/tabler": "^0.12.0",
     "@vueuse/core": "^10.11.1",
