@@ -23,7 +23,7 @@ Welcome to `my-it-tools`! This guide outlines the project structure, architectur
 - **Development Server:** `pnpm dev`
 - **Unit Testing:** `pnpm test` or `npx vitest run --environment jsdom`
 - **Linter:** `pnpm lint`
-- **Typecheck (TypeScript compilation):** `npx vue-tsc --noEmit`
+- **Typecheck (TypeScript compilation):** `pnpm typecheck`
 - **Production Build:** `pnpm build`
 
 ## Code Guidelines

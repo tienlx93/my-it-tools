@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useThemeVars } from 'naive-ui';
 import FavoriteButton from './FavoriteButton.vue';
-import type { Tool } from '@/tools/tools.types';
+import type { ToolWithCategory } from '@/tools/tools.types';
 
-const props = defineProps<{ tool: Tool & { category: string } }>();
+const props = defineProps<{ tool: ToolWithCategory }>();
 const { tool } = toRefs(props);
 const theme = useThemeVars();
 </script>

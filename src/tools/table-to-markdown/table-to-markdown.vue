@@ -15,7 +15,7 @@ import TextareaCopyable from '@/components/TextareaCopyable.vue';
 const { t } = useI18n();
 
 // Initialize TableState
-const state = reactive(new TableState(3, 3));
+const state = reactive(new TableState(3, 3)) as TableState;
 
 // Compact Mode
 const compactMode = ref(false);
