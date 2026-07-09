@@ -34,8 +34,24 @@ const isISO8601DateTimeString = createRegexMatcher(ISO8601_REGEX);
 const isISO9075DateString = createRegexMatcher(ISO9075_REGEX);
 const isRFC3339DateString = createRegexMatcher(RFC3339_REGEX);
 const isRFC7231DateString = createRegexMatcher(RFC7231_REGEX);
-const isUnixTimestamp = createRegexMatcher(/^[0-9]{1,10}$/);
-const isTimestamp = createRegexMatcher(/^[0-9]{1,13}$/);
+function isUnixTimestamp(value?: string): boolean {
+  if (_.isNil(value)) {
+    return false;
+  }
+  const trimmed = value.trim();
+  if (!/^\d{1,10}$/.test(trimmed)) {
+    return false;
+  }
+  const n = Number(trimmed);
+  return n >= 0 && n <= 4102444800;
+}
+
+function isTimestamp(value?: string): boolean {
+  if (_.isNil(value)) {
+    return false;
+  }
+  return /^\d{11,13}$/.test(value.trim());
+}
 const isMongoObjectId = createRegexMatcher(/^[0-9a-fA-F]{24}$/);
 
 const isExcelFormat = createRegexMatcher(EXCEL_FORMAT_REGEX);

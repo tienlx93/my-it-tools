@@ -94,11 +94,15 @@ describe('date-time-converter models', () => {
       expect(isUnixTimestamp('1649789394')).toBe(true);
       expect(isUnixTimestamp('1234567890')).toBe(true);
       expect(isUnixTimestamp('0')).toBe(true);
+      expect(isUnixTimestamp('4102444800')).toBe(true);
     });
 
     test('should return false for invalid Unix timestamps', () => {
       expect(isUnixTimestamp('foo')).toBe(false);
       expect(isUnixTimestamp('')).toBe(false);
+      expect(isUnixTimestamp('4102444801')).toBe(false);
+      expect(isUnixTimestamp('9999999999')).toBe(false);
+      expect(isUnixTimestamp('1649792026123')).toBe(false);
     });
   });
 
@@ -106,12 +110,16 @@ describe('date-time-converter models', () => {
     test('should return true for valid Unix timestamps in milliseconds', () => {
       expect(isTimestamp('1649792026123')).toBe(true);
       expect(isTimestamp('1234567890000')).toBe(true);
-      expect(isTimestamp('0')).toBe(true);
+      expect(isTimestamp('17200000000')).toBe(true); // 11 digits
+      expect(isTimestamp('172000000000')).toBe(true); // 12 digits
     });
 
     test('should return false for invalid Unix timestamps in milliseconds', () => {
       expect(isTimestamp('foo')).toBe(false);
       expect(isTimestamp('')).toBe(false);
+      expect(isTimestamp('0')).toBe(false);
+      expect(isTimestamp('1720000000')).toBe(false); // 10 digits
+      expect(isTimestamp('17200000000000')).toBe(false); // 14 digits
     });
   });
 
