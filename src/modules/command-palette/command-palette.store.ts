@@ -72,12 +72,22 @@ export const useCommandPaletteStore = defineStore('command-palette', () => {
     },
   ];
 
+  const formattedSearchPrompt = computed(() => {
+    const trimmed = searchPrompt.value.trim();
+    if (!trimmed) {
+      return '';
+    }
+    return trimmed.split(/\s+/).map(word => `'${word}`).join(' ');
+  });
+
   const { searchResult } = useFuzzySearch({
-    search: searchPrompt,
+    search: formattedSearchPrompt,
     data: searchOptions,
     options: {
       keys: [{ name: 'name', weight: 2 }, 'description', 'keywords', 'category'],
       threshold: 0.3,
+      useExtendedSearch: true,
+      ignoreLocation: true,
     },
   });
 

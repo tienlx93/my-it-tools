@@ -34,7 +34,16 @@ hljs.registerLanguage('toml', iniHljs);
 hljs.registerLanguage('markdown', markdownHljs);
 
 const { value, language, followHeightOf, copyPlacement, copyMessage } = toRefs(props);
-const { height } = followHeightOf.value ? useElementSize(followHeightOf) : { height: ref(null) };
+const targetElement = computed(() => {
+  if (!followHeightOf.value) {
+    return null;
+  }
+  if ('$el' in (followHeightOf.value as any)) {
+    return (followHeightOf.value as any).$el;
+  }
+  return followHeightOf.value as HTMLElement;
+});
+const { height } = useElementSize(targetElement);
 
 const { copy, isJustCopied } = useCopy({ source: value, createToast: false });
 const tooltipText = computed(() => isJustCopied.value ? 'Copied!' : copyMessage.value);
@@ -46,7 +55,7 @@ const tooltipText = computed(() => isJustCopied.value ? 'Copied!' : copyMessage.
       <n-scrollbar
         x-scrollable
         trigger="none"
-        :style="height ? `min-height: ${height - 40 /* card padding */ + 10 /* negative margin compensation */}px` : ''"
+        :style="height ? `height: ${height - 30}px; max-height: ${height - 30}px;` : ''"
       >
         <n-config-provider :hljs="hljs">
           <n-code :code="value" :language="language" :trim="false" data-test-id="area-content" />
