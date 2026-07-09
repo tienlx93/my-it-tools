@@ -51,7 +51,8 @@ function showModal(route: string, input: string) {
 
   const iframe = document.createElement('iframe');
   const encodedInput = encodeURIComponent(input);
-  const extensionUrl = chrome.runtime.getURL(`index.html#/${route}?input=${encodedInput}&mode=modal`);
+  const baseUrl = chrome.runtime.getURL('index.html');
+  const extensionUrl = `${baseUrl}#/${route}?input=${encodedInput}&mode=modal`;
   iframe.src = extensionUrl;
 
   overlay.appendChild(iframe);
