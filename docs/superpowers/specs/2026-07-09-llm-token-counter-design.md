@@ -114,6 +114,8 @@ We will add a beautiful table below the main text-statistics fields in [text-sta
   - **Input Cost** (formatted currency)
   - **Output Cost** (formatted currency)
 
+Add a Collapse with raw table of base price ($ per mil token for config models)
+
 ---
 
 ## Testing Strategy
