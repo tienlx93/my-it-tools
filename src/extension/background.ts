@@ -52,9 +52,9 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   }
 
   const toolMap: Record<string, string> = {
-    qr: 'qr-code-generator',
+    qr: 'qrcode-generator',
     stats: 'text-statistics',
-    datetime: 'date-time-converter',
+    datetime: 'date-converter',
     base64: 'base64-string-converter',
   };
 
