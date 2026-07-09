@@ -43,5 +43,5 @@ Welcome to `my-it-tools`! This guide outlines the project structure, architectur
 
 ### Verification Checklist before Completion
 1. **Run Linter:** `pnpm lint` must pass cleanly without warnings.
-2. **Typecheck:** `npx vue-tsc --noEmit` must pass with zero compilation errors.
+2. **Typecheck:** `pnpm typecheck` must pass with zero compilation errors.
 3. **Run Unit Tests:** `npx vitest run --environment jsdom` must succeed with all tests passing.

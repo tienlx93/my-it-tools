@@ -22,7 +22,7 @@ const tag = computed(() => {
 </script>
 
 <template>
-  <component :is="tag" :href="href ?? to" class="c-link" :to="to">
+  <component :is="tag" v-bind="tag === 'a' ? { href } : {}" class="c-link" :to="to">
     <slot />
   </component>
 </template>

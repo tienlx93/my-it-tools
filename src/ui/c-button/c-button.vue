@@ -54,7 +54,7 @@ const size = computed(() => theme.value.size[sizeName.value]);
 <template>
   <component
     :is="tag"
-    :href="href ?? to"
+    v-bind="tag === 'a' ? { href } : {}"
     class="c-button"
     :class="{ disabled, round, circle }"
     :to="to"

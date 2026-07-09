@@ -281,6 +281,26 @@ tools:
   wifi-qrcode-generator:
     title: WiFi QR Code generator
     description: Generate and download QR codes for quick connections to WiFi networks.
+  qr-code-generator:
+    texts:
+      label-text: 'Text:'
+      placeholder-your-link-or-text: Your link or text...
+      label-foreground-color: 'Foreground color:'
+      label-background-color: 'Background color:'
+      label-width: 'Width:'
+      label-margin: 'Margin:'
+      label-error-resistance: 'Error resistance:'
+      title-drag-and-drop-an-image-here-or-click-to-select-an-image: Drag and drop an image here, or click to select an image
+      label-size: 'Size:'
+      label-color: 'Color:'
+      label-type: 'Type:'
+      label-output-format: 'Output format:'
+      label-terminal-output: 'Terminal output:'
+      tag-dots-options: Dots Options
+      tag-corners-dots-options: Corners Dots Options
+      tag-corners-square-options: Corners Square Options
+      tag-small-terminal: Small Terminal
+      title-image: Image
   xml-formatter:
     title: XML formatter
     description: Prettify your XML string into a friendly, human-readable format.
