@@ -7,8 +7,9 @@ const siderPosition = computed(() => (isSmallScreen.value ? 'absolute' : 'static
 </script>
 
 <template>
-  <n-layout has-sider>
+  <n-layout :has-sider="!styleStore.isModalMode">
     <n-layout-sider
+      v-if="!styleStore.isModalMode"
       bordered
       collapse-mode="width"
       :collapsed-width="0"
@@ -20,7 +21,7 @@ const siderPosition = computed(() => (isSmallScreen.value ? 'absolute' : 'static
     >
       <slot name="sider" />
     </n-layout-sider>
-    <n-layout class="content">
+    <n-layout class="content" :class="{ 'modal-mode': styleStore.isModalMode }">
       <slot name="content" />
       <div v-show="isSmallScreen && !isMenuCollapsed" class="overlay" @click="isMenuCollapsed = true" />
     </n-layout>
@@ -40,6 +41,11 @@ const siderPosition = computed(() => (isSmallScreen.value ? 'absolute' : 'static
 
 .content {
   // background-color: #f1f5f9;
+  &.modal-mode {
+    ::v-deep(.n-layout-scroll-container) {
+      padding: 0;
+    }
+  }
   ::v-deep(.n-layout-scroll-container) {
     padding: 26px;
   }
