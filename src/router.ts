@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
 import { layouts } from './layouts/index';
 import HomePage from './pages/Home.page.vue';
 import NotFound from './pages/404.page.vue';
@@ -18,8 +18,14 @@ const toolsRedirectRoutes = tools
     ({ path, redirectFrom }) => redirectFrom?.map(redirectSource => ({ path: redirectSource, redirect: path })) ?? [],
   );
 
+declare const chrome: any;
+
+const isExtension = typeof chrome !== 'undefined' && !!chrome.runtime?.id;
+
 const router = createRouter({
-  history: createWebHistory(config.app.baseUrl),
+  history: isExtension
+    ? createWebHashHistory()
+    : createWebHistory(config.app.baseUrl),
   routes: [
     {
       path: '/',
