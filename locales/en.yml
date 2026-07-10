@@ -484,6 +484,10 @@ tools:
     cancel: Cancel
     create: Create
     newTableTitle: Create New Table
+    downloadAs: Download as
+    csvComma: CSV (Comma)
+    csvSemicolon: CSV (Semicolon)
+    csvTab: TSV (Tab)
     texts:
       new-table: New table...
       markdown-result: 'Markdown result:'

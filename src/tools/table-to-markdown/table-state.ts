@@ -1,3 +1,7 @@
+import slugify from '@sindresorhus/slugify';
+import { stringify as stringifyYaml } from 'yaml';
+import * as XLSX from 'xlsx';
+
 export interface Cell {
   html: string
 }
@@ -257,6 +261,122 @@ export class TableState {
       });
       return [headerLine, separatorLine, ...bodyLines].join('\n');
     }
+  }
+
+  // Helper to strip HTML tags and get plain text, preserving line breaks
+  private static htmlToPlainText(html: string): string {
+    if (!html) {
+      return '';
+    }
+    // Convert block/line-break elements to newlines before stripping tags
+    let text = html;
+    text = text.replace(/<br\s*\/?>/gi, '\n');
+    text = text.replace(/<\/p>/gi, '\n');
+    text = text.replace(/<\/div>/gi, '\n');
+    text = text.replace(/<\/li>/gi, '\n');
+    // Strip all remaining HTML tags
+    text = text.replace(/<[^>]+>/g, '');
+    // Decode common HTML entities
+    text = text.replace(/&amp;/g, '&');
+    text = text.replace(/&lt;/g, '<');
+    text = text.replace(/&gt;/g, '>');
+    text = text.replace(/&quot;/g, '"');
+    text = text.replace(/&#39;/g, '\'');
+    text = text.replace(/&nbsp;/g, ' ');
+    // Normalize line endings and trim
+    text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    // Collapse multiple blank lines to a single newline
+    text = text.replace(/\n{3,}/g, '\n\n');
+    return text.trim();
+  }
+
+  // Get plain-text headers
+  private getPlainHeaders(): string[] {
+    return this.headers.map(h => TableState.htmlToPlainText(h.html));
+  }
+
+  // Get plain-text rows
+  private getPlainRows(): string[][] {
+    return this.rows.map(row => row.map(cell => TableState.htmlToPlainText(cell.html)));
+  }
+
+  // Slugify a header to a safe key name
+  private static slugifyKey(header: string): string {
+    const slug = slugify(header, { separator: '_' });
+    return slug || `column_${Math.random().toString(36).slice(2, 7)}`;
+  }
+
+  public toJson(): string {
+    const headers = this.getPlainHeaders();
+    const rows = this.getPlainRows();
+    const keys = headers.map(h => TableState.slugifyKey(h));
+    const data = rows.map((row) => {
+      const obj: Record<string, string> = {};
+      keys.forEach((key, i) => {
+        obj[key] = row[i] ?? '';
+      });
+      return obj;
+    });
+    return JSON.stringify(data, null, 2);
+  }
+
+  public toYaml(): string {
+    const headers = this.getPlainHeaders();
+    const rows = this.getPlainRows();
+    const keys = headers.map(h => TableState.slugifyKey(h));
+    const data = rows.map((row) => {
+      const obj: Record<string, string> = {};
+      keys.forEach((key, i) => {
+        obj[key] = row[i] ?? '';
+      });
+      return obj;
+    });
+    return stringifyYaml(data);
+  }
+
+  public toSqlInsert(tableName = 'table_data'): string {
+    const headers = this.getPlainHeaders();
+    const rows = this.getPlainRows();
+    const columns = headers.map(h => `\`${h.replace(/`/g, '``')}\``).join(', ');
+    const lines = rows.map((row) => {
+      const values = row.map((cell) => {
+        const escaped = cell.replace(/'/g, '\'\'');
+        return `'${escaped}'`;
+      }).join(', ');
+      return `INSERT INTO \`${tableName}\` (${columns}) VALUES (${values});`;
+    });
+    return lines.join('\n');
+  }
+
+  public toCsv(delimiter: ',' | ';' | '\t' = ','): string {
+    const headers = this.getPlainHeaders();
+    const rows = this.getPlainRows();
+
+    const escapeCell = (cell: string): string => {
+      if (cell.includes(delimiter) || cell.includes('"') || cell.includes('\n')) {
+        return `"${cell.replace(/"/g, '""')}"`;
+      }
+      return cell;
+    };
+
+    const headerLine = headers.map(escapeCell).join(delimiter);
+    const bodyLines = rows.map(row => row.map(escapeCell).join(delimiter));
+    return [headerLine, ...bodyLines].join('\n');
+  }
+
+  public toMarkdownExport(compact = false): string {
+    return this.toMarkdown({ compact });
+  }
+
+  public toXlsxBuffer(): ArrayBuffer {
+    const headers = this.getPlainHeaders();
+    const rows = this.getPlainRows();
+    const wsData = [headers, ...rows];
+    const ws = XLSX.utils.aoa_to_sheet(wsData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    const buf = XLSX.write(wb, { type: 'array', bookType: 'xlsx' });
+    return buf;
   }
 
   public parsePaste(html: string, text: string) {

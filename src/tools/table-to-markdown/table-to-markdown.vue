@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n';
 import {
   ArrowBack,
   ArrowForwardUp,
+  Download,
   Exchange,
   Plus,
   Trash,
@@ -76,6 +77,83 @@ function redoAction() {
 const markdownOutput = computed(() => {
   return state.toMarkdown({ compact: compactMode.value });
 });
+
+// Download helper
+function downloadText(content: string, filename: string, mimeType: string) {
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function downloadBinary(buffer: ArrayBuffer, filename: string) {
+  const blob = new Blob([buffer], { type: 'application/octet-stream' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// Download handlers
+function downloadJson() {
+  downloadText(state.toJson(), 'table.json', 'application/json');
+}
+
+function downloadYaml() {
+  downloadText(state.toYaml(), 'table.yaml', 'text/yaml');
+}
+
+function downloadSql() {
+  downloadText(state.toSqlInsert(), 'table.sql', 'text/plain');
+}
+
+function downloadCsvComma() {
+  downloadText(state.toCsv(','), 'table.csv', 'text/csv');
+}
+
+function downloadCsvSemicolon() {
+  downloadText(state.toCsv(';'), 'table_semicolon.csv', 'text/csv');
+}
+
+function downloadCsvTab() {
+  downloadText(state.toCsv('\t'), 'table.tsv', 'text/tab-separated-values');
+}
+
+function downloadMarkdown() {
+  downloadText(state.toMarkdownExport(compactMode.value), 'table.md', 'text/markdown');
+}
+
+function downloadXlsx() {
+  downloadBinary(state.toXlsxBuffer(), 'table.xlsx');
+}
+
+// CSV dropdown options
+const csvDropdownOptions = computed(() => [
+  { label: t('tools.table-to-markdown.csvComma'), key: 'csv-comma' },
+  { label: t('tools.table-to-markdown.csvSemicolon'), key: 'csv-semicolon' },
+  { label: t('tools.table-to-markdown.csvTab'), key: 'csv-tab' },
+]);
+
+function handleCsvSelect(key: string) {
+  if (key === 'csv-comma') {
+    downloadCsvComma();
+  }
+  else if (key === 'csv-semicolon') {
+    downloadCsvSemicolon();
+  }
+  else if (key === 'csv-tab') {
+    downloadCsvTab();
+  }
+}
 </script>
 
 <template>
@@ -154,6 +232,42 @@ const markdownOutput = computed(() => {
       </div>
     </div>
 
+    <!-- Download Buttons -->
+    <c-card class="download-card" mt-4>
+      <div class="download-section">
+        <h3 class="section-title mb-3">
+          <n-icon :component="Download" class="mr-1" />
+          {{ t('tools.table-to-markdown.downloadAs') }}
+        </h3>
+        <div class="download-buttons">
+          <c-button class="download-btn" @click="downloadJson">
+            JSON
+          </c-button>
+          <c-button class="download-btn" @click="downloadYaml">
+            YAML
+          </c-button>
+          <c-button class="download-btn" @click="downloadSql">
+            SQL INSERT
+          </c-button>
+          <n-dropdown
+            trigger="click"
+            :options="csvDropdownOptions"
+            @select="handleCsvSelect"
+          >
+            <c-button class="download-btn download-btn--csv">
+              CSV ▾
+            </c-button>
+          </n-dropdown>
+          <c-button class="download-btn" @click="downloadMarkdown">
+            Markdown
+          </c-button>
+          <c-button class="download-btn download-btn--xlsx" @click="downloadXlsx">
+            XLSX
+          </c-button>
+        </div>
+      </div>
+    </c-card>
+
     <!-- New Table Presets Modal -->
     <c-modal v-model:open="showNewTableModal">
       <c-card :title="t('tools.table-to-markdown.newTableTitle')">
@@ -206,6 +320,8 @@ const markdownOutput = computed(() => {
   font-size: 16px;
   font-weight: 600;
   color: var(--text-color, #1f2225);
+  display: flex;
+  align-items: center;
 }
 
 .dark .section-title {
@@ -256,6 +372,46 @@ const markdownOutput = computed(() => {
       background-color: var(--header-bg, #fafafc);
       font-weight: 600;
     }
+  }
+}
+
+.download-card {
+  border-radius: 8px;
+}
+
+.download-section {
+  padding: 4px 0;
+}
+
+.download-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.download-btn {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.download-btn--csv {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  border: none;
+
+  &:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+  }
+}
+
+.download-btn--xlsx {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ffffff;
+  border: none;
+
+  &:hover {
+    background: linear-gradient(135deg, #16a34a, #15803d);
   }
 }
 
