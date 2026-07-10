@@ -21,5 +21,20 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('node_modules/js-tiktoken')) {
+            return 'js-tiktoken';
+          }
+          if (id.includes('node_modules/monaco-editor')) {
+            return 'monaco-editor';
+          }
+          if (id.includes('node_modules/@vicons/')) {
+            return 'icons';
+          }
+        },
+      },
+    },
   },
 });
