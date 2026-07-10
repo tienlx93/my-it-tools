@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.07.10-1d28370
+
+### Performance
+-  split monaco-editor, js-tiktoken and icons into named chunks, raise PWA limit to 6 MB (1d28370)
+-  lazy-load js-tiktoken via dynamic import to reduce main bundle size (d719af6)
+
 ## Version 2026.07.09-e8bb001
 
 ### Features
