@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.07.22-175f923
+
+### Features
+- **chrome-ext**: add all tools and current page QR to chrome ext (175f923)
+- **table-to-markdown**: add multi-format download (JSON, YAML, SQL, CSV, Markdown, XLSX) and fix newline escaping in HTML-to-plain-text conversion (571182f)
+
 ## Version 2026.07.10-1d28370
 
 ### Performance
