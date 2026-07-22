@@ -5,14 +5,24 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: 'it-tools',
     title: 'IT Tools',
-    contexts: ['selection', 'link'],
+    contexts: ['selection', 'link', 'page'],
   });
 
+  // "Open All Tools" is available in every context
+  chrome.contextMenus.create({
+    parentId: 'it-tools',
+    id: 'open-all-tools',
+    title: 'Open All Tools',
+    contexts: ['selection', 'link', 'page'],
+  });
+
+  // Separator (visual grouping via a disabled item is not supported in MV3, so order suffices)
   chrome.contextMenus.create({
     parentId: 'it-tools',
     id: 'qr',
     title: 'Generate QR Code',
-    contexts: ['selection', 'link'],
+    // 'page' allows right-click on blank page area; falls back to current URL
+    contexts: ['selection', 'link', 'page'],
   });
 
   chrome.contextMenus.create({
@@ -43,9 +53,18 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     return;
   }
 
+  // "Open All Tools" opens the main page (no specific tool)
+  if (info.menuItemId === 'open-all-tools') {
+    chrome.tabs.sendMessage(tab.id, { action: 'open-main-page' }).catch(err => console.warn(err));
+    return;
+  }
+
+  // Determine the input payload:
+  // 1. For QR: prefer link URL, then selection, then fall back to current tab URL
+  // 2. For other tools: use selection text
   let payload = '';
-  if (info.menuItemId === 'qr' && info.linkUrl) {
-    payload = info.linkUrl;
+  if (info.menuItemId === 'qr') {
+    payload = info.linkUrl ?? info.selectionText ?? tab.url ?? '';
   }
   else if (info.selectionText) {
     payload = info.selectionText;
@@ -58,7 +77,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     base64: 'base64-string-converter',
   };
 
-  const targetRoute = toolMap[info.menuItemId];
+  const targetRoute = toolMap[info.menuItemId as string];
   if (targetRoute) {
     chrome.tabs.sendMessage(tab.id, {
       action: 'open-tool',

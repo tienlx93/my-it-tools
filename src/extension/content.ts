@@ -5,6 +5,10 @@ chrome.runtime.onMessage.addListener((message) => {
     const { route, input } = message;
     showModal(route, input);
   }
+  else if (message.action === 'open-main-page') {
+    // Open the main tools page (no specific route)
+    showModal('', '');
+  }
 });
 
 function showModal(route: string, input: string) {
@@ -50,9 +54,16 @@ function showModal(route: string, input: string) {
   overlay.className = 'overlay';
 
   const iframe = document.createElement('iframe');
-  const encodedInput = encodeURIComponent(input);
   const baseUrl = chrome.runtime.getURL('index.html');
-  const extensionUrl = `${baseUrl}#/${route}?input=${encodedInput}&mode=modal`;
+  // When no route is specified, navigate to the home page (all tools)
+  let extensionUrl: string;
+  if (route) {
+    const encodedInput = encodeURIComponent(input);
+    extensionUrl = `${baseUrl}#/${route}?input=${encodedInput}&mode=modal`;
+  }
+  else {
+    extensionUrl = `${baseUrl}#/`;
+  }
   iframe.src = extensionUrl;
 
   overlay.appendChild(iframe);
