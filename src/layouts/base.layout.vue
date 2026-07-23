@@ -14,6 +14,7 @@ import type { ToolCategory } from '@/tools/tools.types';
 import { useToolStore } from '@/tools/tools.store';
 import { useTracker } from '@/modules/tracker/tracker.services';
 import CollapsibleToolMenu from '@/components/CollapsibleToolMenu.vue';
+import { useVscodeApi } from '@/composable/useVscodeApi';
 
 const themeVars = useThemeVars();
 const styleStore = useStyleStore();
@@ -30,6 +31,18 @@ const tools = computed<ToolCategory[]>(() => [
   ...(favoriteTools.value.length > 0 ? [{ name: t('tools.categories.favorite-tools'), components: favoriteTools.value }] : []),
   ...toolsByCategory.value,
 ]);
+
+const route = useRoute();
+
+function openInBrowser() {
+  const api = useVscodeApi();
+  if (!api) {
+    return;
+  }
+  const hostedBase = 'https://my-it-tools.web.app/#';
+  const input = route.query.input ? `?input=${route.query.input}` : '';
+  api.postMessage({ command: 'openInBrowser', url: `${hostedBase}${route.path}${input}` });
+}
 </script>
 
 <template>
@@ -90,7 +103,7 @@ const tools = computed<ToolCategory[]>(() => [
     </template>
 
     <template #content>
-      <div v-if="!styleStore.isModalMode" flex items-center justify-center gap-2>
+      <div v-if="!styleStore.isModalMode && !styleStore.isVscodeMode" flex items-center justify-center gap-2>
         <c-button
           circle
           variant="text"
@@ -134,6 +147,13 @@ const tools = computed<ToolCategory[]>(() => [
             <NIcon v-if="!styleStore.isSmallScreen" :component="Heart" ml-2 />
           </c-button>
         </c-tooltip>
+      </div>
+
+      <!-- VS Code mode toolbar -->
+      <div v-if="styleStore.isVscodeMode" style="display:flex;justify-content:flex-end;padding:8px 16px;">
+        <c-button size="small" variant="text" @click="openInBrowser">
+          🌐 Open in Browser
+        </c-button>
       </div>
       <slot />
     </template>
