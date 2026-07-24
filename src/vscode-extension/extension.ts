@@ -43,9 +43,13 @@ function openPanel(
   const webviewDir = vscode.Uri.joinPath(context.extensionUri, 'webview');
   const title = route ? `IT Tools \u2014 ${label}` : 'IT Tools';
 
+  const encodedInput = encodeURIComponent(input);
+  const hash = route ? `/${route}?input=${encodedInput}&mode=vscode` : '/?mode=vscode';
+
   if (currentPanel) {
     currentPanel.title = title;
     currentPanel.webview.html = buildHtml(currentPanel.webview, webviewDir, route, input);
+    void currentPanel.webview.postMessage({ command: 'navigate', hash });
     currentPanel.reveal(vscode.ViewColumn.Beside);
     return;
   }
@@ -98,7 +102,7 @@ function buildHtml(
 
   // Build hash path for the Vue router
   const encodedInput = encodeURIComponent(input);
-  const hash = route ? `/${route}?input=${encodedInput}&mode=vscode` : '/';
+  const hash = route ? `/${route}?input=${encodedInput}&mode=vscode` : '/?mode=vscode';
 
   // Inject CSP meta tag and init script
   const csp = `default-src 'none'; script-src ${webview.cspSource} 'unsafe-inline' 'unsafe-eval'; style-src ${webview.cspSource} 'unsafe-inline'; font-src ${webview.cspSource} data:; img-src ${webview.cspSource} data: blob:; connect-src ${webview.cspSource} data:;`;
@@ -108,6 +112,12 @@ function buildHtml(
   const initScript = `<script>
 try { window.__vscodeApi = acquireVsCodeApi(); } catch(e) {}
 window.location.hash = ${JSON.stringify(hash)};
+window.addEventListener('message', event => {
+  const message = event.data;
+  if (message && message.command === 'navigate') {
+    window.location.hash = message.hash;
+  }
+});
 <\/script>`;
 
   html = html.replace('<head>', `<head>\n${baseTag}`);

@@ -20,10 +20,18 @@ const toolsRedirectRoutes = tools
 
 declare const chrome: any;
 
-const isExtension = typeof chrome !== 'undefined' && !!chrome.runtime?.id;
+const isHashRouting
+  = (typeof chrome !== 'undefined' && !!chrome.runtime?.id)
+  || (typeof window !== 'undefined' && (
+    !!(window as any).__vscodeApi
+    || window.location.protocol.includes('vscode')
+    || window.location.search.includes('mode=vscode')
+    || window.location.hash.includes('mode=vscode')
+    || window.location.hash.length > 0
+  ));
 
 const router = createRouter({
-  history: isExtension
+  history: isHashRouting
     ? createWebHashHistory()
     : createWebHistory(config.app.baseUrl),
   routes: [
