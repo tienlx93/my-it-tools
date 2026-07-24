@@ -1,0 +1,46 @@
+{
+  "name": "my-it-tools",
+  "displayName": "MY IT Tools",
+  "description": "Developer utilities accessible via right-click in the editor.",
+  "version": "1.0.0",
+  "publisher": "tienlx93",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other"],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "submenus": [
+      { "id": "my-it-tools.submenu", "label": "IT Tools" }
+    ],
+    "commands": [
+      { "command": "my-it-tools.qr",       "title": "Generate QR Code" },
+      { "command": "my-it-tools.stats",    "title": "Text Statistics" },
+      { "command": "my-it-tools.datetime", "title": "Date-Time Converter" },
+      { "command": "my-it-tools.base64",   "title": "Base64 Encode" },
+      { "command": "my-it-tools.json",     "title": "JSON Viewer" },
+      { "command": "my-it-tools.url",      "title": "URL Encoder" },
+      { "command": "my-it-tools.hash",     "title": "Hash Text" },
+      { "command": "my-it-tools.slugify",  "title": "Slugify String" },
+      { "command": "my-it-tools.openAll",  "title": "IT Tools: Open All Tools" }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "my-it-tools.submenu",
+          "when": "editorHasSelection",
+          "group": "9_cutcopypaste@100"
+        }
+      ],
+      "my-it-tools.submenu": [
+        { "command": "my-it-tools.qr" },
+        { "command": "my-it-tools.stats" },
+        { "command": "my-it-tools.datetime" },
+        { "command": "my-it-tools.base64" },
+        { "command": "my-it-tools.json" },
+        { "command": "my-it-tools.url" },
+        { "command": "my-it-tools.hash" },
+        { "command": "my-it-tools.slugify" }
+      ]
+    }
+  }
+}
