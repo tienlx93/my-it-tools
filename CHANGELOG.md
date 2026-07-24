@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.07.24-030440b
+
+### Features
+- **vscode**: add VS Code Extension for IT Tools with editor context menu (#51) (030440b)
+
 ## Version 2026.07.22-175f923
 
 ### Features
