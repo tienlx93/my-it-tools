@@ -89,23 +89,26 @@ function buildHtml(
   const indexPath = path.join(webviewDir.fsPath, 'index.html');
   let html = fs.readFileSync(indexPath, 'utf8');
 
-  // Ensure baseUri ends with a trailing slash
+  // Prepare baseUri without trailing slash
   const baseUriStr = webview.asWebviewUri(webviewDir).toString();
-  const baseUri = baseUriStr.endsWith('/') ? baseUriStr : `${baseUriStr}/`;
+  const baseUri = baseUriStr.endsWith('/') ? baseUriStr.slice(0, -1) : baseUriStr;
 
-  // Inject base tag
-  const baseTag = `<base href="${baseUri}">`;
-
-  // Rewrite relative src="./" and href="./" to explicit baseUri URIs
-  html = html.replace(/src="\.\//g, `src="${baseUri}`);
-  html = html.replace(/href="\.\//g, `href="${baseUri}`);
+  // Rewrite relative src and href attributes to explicit webview resource URIs
+  // Note: Do NOT inject a <base href> tag because it breaks window.history.replaceState origin checks in Webviews.
+  html = html.replace(/(src|href)="(\.\/[^"]+|assets\/[^"]+|[a-zA-Z0-9_.-]+\.(?:ico|png|svg|js|css))"/g, (match, attr, relPath) => {
+    if (relPath.startsWith('http://') || relPath.startsWith('https://')) {
+      return match;
+    }
+    const cleanPath = relPath.replace(/^\.\//, '');
+    return `${attr}="${baseUri}/${cleanPath}"`;
+  });
 
   // Build hash path for the Vue router
   const encodedInput = encodeURIComponent(input);
   const hash = route ? `/${route}?input=${encodedInput}&mode=vscode` : '/?mode=vscode';
 
   // Inject CSP meta tag and init script
-  const csp = `default-src 'none'; script-src ${webview.cspSource} 'unsafe-inline' 'unsafe-eval'; style-src ${webview.cspSource} 'unsafe-inline'; font-src ${webview.cspSource} data:; img-src ${webview.cspSource} data: blob:; connect-src ${webview.cspSource} data:;`;
+  const csp = `default-src 'none'; script-src ${webview.cspSource} 'unsafe-inline' 'unsafe-eval'; style-src ${webview.cspSource} 'unsafe-inline'; font-src ${webview.cspSource} data:; img-src ${webview.cspSource} data: blob:; connect-src ${webview.cspSource} data:; frame-src ${webview.cspSource} 'self' blob: data:; child-src ${webview.cspSource} 'self' blob: data:;`;
   const cspMeta = `<meta http-equiv="Content-Security-Policy" content="${csp}">`;
 
   // Inject init script: acquire vscode API + set initial hash before Vue boots
@@ -120,7 +123,6 @@ window.addEventListener('message', event => {
 });
 <\/script>`;
 
-  html = html.replace('<head>', `<head>\n${baseTag}`);
   html = html.replace('</head>', `${cspMeta}\n${initScript}\n</head>`);
 
   return html;

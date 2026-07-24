@@ -39,9 +39,12 @@ function openInBrowser() {
   if (!api) {
     return;
   }
-  const hostedBase = 'https://my-it-tools.web.app/#';
-  const input = route.query.input ? `?input=${route.query.input}` : '';
-  api.postMessage({ command: 'openInBrowser', url: `${hostedBase}${route.path}${input}` });
+  const hostedBase = 'https://my-it-tools.web.app';
+  const query = { ...route.query };
+  delete query.mode;
+  const queryString = new URLSearchParams(query as Record<string, string>).toString();
+  const search = queryString ? `?${queryString}` : '';
+  api.postMessage({ command: 'openInBrowser', url: `${hostedBase}${route.path}${search}` });
 }
 </script>
 

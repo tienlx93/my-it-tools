@@ -21,25 +21,25 @@
       { "command": "my-it-tools.url",      "title": "URL Encoder" },
       { "command": "my-it-tools.hash",     "title": "Hash Text" },
       { "command": "my-it-tools.slugify",  "title": "Slugify String" },
-      { "command": "my-it-tools.openAll",  "title": "IT Tools: Open All Tools" }
+      { "command": "my-it-tools.openAll",  "title": "Open All Tools" }
     ],
     "menus": {
       "editor/context": [
         {
           "submenu": "my-it-tools.submenu",
-          "when": "editorHasSelection",
           "group": "9_cutcopypaste@100"
         }
       ],
       "my-it-tools.submenu": [
-        { "command": "my-it-tools.qr" },
-        { "command": "my-it-tools.stats" },
-        { "command": "my-it-tools.datetime" },
-        { "command": "my-it-tools.base64" },
-        { "command": "my-it-tools.json" },
-        { "command": "my-it-tools.url" },
-        { "command": "my-it-tools.hash" },
-        { "command": "my-it-tools.slugify" }
+        { "command": "my-it-tools.openAll" },
+        { "command": "my-it-tools.qr",       "when": "editorHasSelection" },
+        { "command": "my-it-tools.stats",    "when": "editorHasSelection" },
+        { "command": "my-it-tools.datetime", "when": "editorHasSelection" },
+        { "command": "my-it-tools.base64",   "when": "editorHasSelection" },
+        { "command": "my-it-tools.json",     "when": "editorHasSelection" },
+        { "command": "my-it-tools.url",      "when": "editorHasSelection" },
+        { "command": "my-it-tools.hash",     "when": "editorHasSelection" },
+        { "command": "my-it-tools.slugify",  "when": "editorHasSelection" }
       ]
     }
   }
