@@ -50,3 +50,4 @@ Welcome to `my-it-tools`! This guide outlines the project structure, architectur
 2. **Typecheck:** `pnpm typecheck` must pass with zero compilation errors.
 3. **Run Unit Tests:** `npx vitest run --environment jsdom` must succeed with all tests passing.
 
+> **Exception — doc-only changes:** If a task changes only documentation files (e.g., `README.md`, `*.yml` workflow files, files under `docs/`), skip lint, typecheck, and unit tests. Review the diff directly for correctness instead.
