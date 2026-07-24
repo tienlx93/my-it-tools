@@ -4,12 +4,13 @@ import { useStyleStore } from '@/stores/style.store';
 const styleStore = useStyleStore();
 const { isMenuCollapsed, isSmallScreen } = toRefs(styleStore);
 const siderPosition = computed(() => (isSmallScreen.value ? 'absolute' : 'static'));
+const hideSider = computed(() => styleStore.isModalMode || styleStore.isVscodeMode);
 </script>
 
 <template>
-  <n-layout :has-sider="!styleStore.isModalMode">
+  <n-layout :has-sider="!hideSider">
     <n-layout-sider
-      v-if="!styleStore.isModalMode"
+      v-if="!hideSider"
       bordered
       collapse-mode="width"
       :collapsed-width="0"
@@ -21,7 +22,7 @@ const siderPosition = computed(() => (isSmallScreen.value ? 'absolute' : 'static
     >
       <slot name="sider" />
     </n-layout-sider>
-    <n-layout class="content" :class="{ 'modal-mode': styleStore.isModalMode }">
+    <n-layout class="content" :class="{ 'modal-mode': hideSider }">
       <slot name="content" />
       <div v-show="isSmallScreen && !isMenuCollapsed" class="overlay" @click="isMenuCollapsed = true" />
     </n-layout>

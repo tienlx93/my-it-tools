@@ -24,5 +24,9 @@ export const useStyleStore = defineStore('style', {
       const route = useRoute();
       return route?.query?.mode === 'modal';
     },
+    isVscodeMode: () => {
+      const route = useRoute();
+      return route?.query?.mode === 'vscode';
+    },
   },
 });

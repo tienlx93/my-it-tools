@@ -51,6 +51,40 @@ You can use `my-it-tools` directly on any web page via a Chrome Extension. Highl
    ```
 3. Go to `chrome://extensions`, enable **Developer mode**, and click **Load unpacked**, choosing the `dist-ext/` output directory.
 
+## VS Code Extension
+
+Use `my-it-tools` directly inside VS Code — select any text in the editor, right-click, and choose **IT Tools** to open the tool in a panel beside your code.
+
+**Available tools via right-click on selected text:**
+- Generate QR Code
+- Text Statistics
+- Date-Time Converter
+- Base64 Encode
+- JSON Viewer
+- URL Encoder
+- Hash Text
+- Slugify String
+
+A **🌐 Open in Browser** button in the panel header opens the current tool on the hosted web app.
+
+### Install from Release
+
+1. Download `my-it-tools-X.X.X.vsix` from the [Releases](https://github.com/tienlx93/my-it-tools/releases) page.
+2. Open VS Code.
+3. Go to the **Extensions** panel (`Ctrl+Shift+X` / `Cmd+Shift+X`).
+4. Click the **···** menu (top-right of the panel) → **Install from VSIX…**
+5. Select the downloaded `.vsix` file.
+
+### Build from Source
+
+1. Clone the repository and install dependencies: `pnpm install`.
+2. Build and package the extension:
+   ```sh
+   pnpm build:vscode
+   pnpm package:vscode
+   ```
+3. Install the generated `.vsix` from `dist-vscode/` via **Install from VSIX…** as above.
+
 ## Contribute
 
 ### Recommended IDE Setup

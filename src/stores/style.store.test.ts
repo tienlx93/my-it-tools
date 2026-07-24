@@ -26,4 +26,15 @@ describe('style store', () => {
     const store = useStyleStore();
     expect(store.isModalMode).toBe(true);
   });
+
+  it('returns false for isVscodeMode by default', () => {
+    const store = useStyleStore();
+    expect(store.isVscodeMode).toBe(false);
+  });
+
+  it('detects isVscodeMode when mode=vscode is present in query', () => {
+    mockRoute.query.mode = 'vscode';
+    const store = useStyleStore();
+    expect(store.isVscodeMode).toBe(true);
+  });
 });
