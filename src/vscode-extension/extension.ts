@@ -85,23 +85,32 @@ function buildHtml(
   const indexPath = path.join(webviewDir.fsPath, 'index.html');
   let html = fs.readFileSync(indexPath, 'utf8');
 
-  // Rewrite relative asset paths to vscode-resource URIs
-  const baseUri = webview.asWebviewUri(webviewDir).toString();
-  html = html.replace(/src="(\.\/)?assets\//g, `src="${baseUri}/assets/`);
-  html = html.replace(/href="(\.\/)?assets\//g, `href="${baseUri}/assets/`);
+  // Ensure baseUri ends with a trailing slash
+  const baseUriStr = webview.asWebviewUri(webviewDir).toString();
+  const baseUri = baseUriStr.endsWith('/') ? baseUriStr : `${baseUriStr}/`;
+
+  // Inject base tag
+  const baseTag = `<base href="${baseUri}">`;
+
+  // Rewrite relative src="./" and href="./" to explicit baseUri URIs
+  html = html.replace(/src="\.\//g, `src="${baseUri}`);
+  html = html.replace(/href="\.\//g, `href="${baseUri}`);
 
   // Build hash path for the Vue router
   const encodedInput = encodeURIComponent(input);
   const hash = route ? `/${route}?input=${encodedInput}&mode=vscode` : '/';
 
-  // Inject CSP meta tag and init script before </head>
-  const csp = `default-src 'none'; img-src ${webview.cspSource} data:; style-src ${webview.cspSource} 'unsafe-inline'; script-src ${webview.cspSource} 'unsafe-inline';`;
+  // Inject CSP meta tag and init script
+  const csp = `default-src 'none'; script-src ${webview.cspSource} 'unsafe-inline' 'unsafe-eval'; style-src ${webview.cspSource} 'unsafe-inline'; font-src ${webview.cspSource} data:; img-src ${webview.cspSource} data: blob:; connect-src ${webview.cspSource} data:;`;
   const cspMeta = `<meta http-equiv="Content-Security-Policy" content="${csp}">`;
+
   // Inject init script: acquire vscode API + set initial hash before Vue boots
   const initScript = `<script>
 try { window.__vscodeApi = acquireVsCodeApi(); } catch(e) {}
 window.location.hash = ${JSON.stringify(hash)};
 <\/script>`;
+
+  html = html.replace('<head>', `<head>\n${baseTag}`);
   html = html.replace('</head>', `${cspMeta}\n${initScript}\n</head>`);
 
   return html;
