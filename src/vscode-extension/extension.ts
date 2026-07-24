@@ -94,12 +94,15 @@ function buildHtml(
   const encodedInput = encodeURIComponent(input);
   const hash = route ? `/${route}?input=${encodedInput}&mode=vscode` : '/';
 
+  // Inject CSP meta tag and init script before </head>
+  const csp = `default-src 'none'; img-src ${webview.cspSource} data:; style-src ${webview.cspSource} 'unsafe-inline'; script-src ${webview.cspSource} 'unsafe-inline';`;
+  const cspMeta = `<meta http-equiv="Content-Security-Policy" content="${csp}">`;
   // Inject init script: acquire vscode API + set initial hash before Vue boots
   const initScript = `<script>
 try { window.__vscodeApi = acquireVsCodeApi(); } catch(e) {}
 window.location.hash = ${JSON.stringify(hash)};
 <\/script>`;
-  html = html.replace('</head>', `${initScript}\n</head>`);
+  html = html.replace('</head>', `${cspMeta}\n${initScript}\n</head>`);
 
   return html;
 }
