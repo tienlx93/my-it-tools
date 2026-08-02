@@ -256,6 +256,17 @@ tools:
   json-prettify:
     title: JSON prettify and format
     description: Prettify your JSON string into a friendly, human-readable format.
+    table:
+      title: JSON Table View
+      nested_levels: Nested Header Levels
+      level_1: Level 1
+      level_2: Level 2
+      level_3: Level 3
+      columns: Columns
+      select_all: Select All
+      clear_all: Clear All
+      filter_placeholder: Filter column...
+      no_data: No valid JSON data to display as table
   docker-run-to-docker-compose-converter:
     title: Docker run to Docker compose converter
     description: Transforms "docker run" commands into docker-compose files!
