@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core';
-import { Bolt, Clipboard, Help, Settings, Trash } from '@vicons/tabler';
-import { formatAndQueryJson, validateJson } from './json.models';
+import { ArrowDown, ArrowUp, ArrowsSort, Bolt, Clipboard, Eye, Help, Settings, Trash } from '@vicons/tabler';
+import JSON5 from 'json5';
+import { evaluateJsonPath, extractTableData, filterAndSortRows, formatAndQueryJson, validateJson } from './json.models';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 // Reactive settings stored in local storage
@@ -111,6 +112,136 @@ const outputJson = computed(() => {
 });
 
 const inputElement = ref<any>(null);
+
+// Table View state
+const headerDepth = ref<1 | 2 | 3>(1);
+const useJsonPathForTable = useStorage<boolean>('json-prettify:use-json-path-for-table', true);
+const visibleColumns = ref<string[] | null>(null);
+const columnFilters = ref<Record<string, string>>({});
+const sortKey = ref<string | null>(null);
+const sortOrder = ref<'asc' | 'desc' | null>(null);
+
+const depthOptions = [
+  { label: '1 Level', value: 1 },
+  { label: '2 Levels', value: 2 },
+  { label: '3 Levels', value: 3 },
+];
+
+const parsedJson = computed(() => {
+  if (!rawJson.value.trim() || !validation.value.isValid) {
+    return null;
+  }
+  try {
+    return parserMode.value === 'json'
+      ? JSON.parse(rawJson.value)
+      : JSON5.parse(rawJson.value);
+  }
+  catch {
+    return null;
+  }
+});
+
+const targetTableJson = computed(() => {
+  if (parsedJson.value === null) {
+    return null;
+  }
+  if (useJsonPathForTable.value && jsonPath.value && jsonPath.value.trim()) {
+    return evaluateJsonPath(parsedJson.value, jsonPath.value);
+  }
+  return parsedJson.value;
+});
+
+const extractedTableData = computed(() => {
+  if (targetTableJson.value === null || targetTableJson.value === undefined) {
+    return { headers: [], rows: [] };
+  }
+  return extractTableData(targetTableJson.value, headerDepth.value);
+});
+
+const allHeaders = computed(() => extractedTableData.value.headers);
+
+const activeVisibleColumns = computed(() => {
+  if (visibleColumns.value === null) {
+    return allHeaders.value;
+  }
+  return allHeaders.value.filter(h => visibleColumns.value!.includes(h));
+});
+
+const filteredAndSortedRows = computed(() => {
+  return filterAndSortRows(
+    extractedTableData.value.rows,
+    columnFilters.value,
+    sortKey.value,
+    sortOrder.value,
+  );
+});
+
+watch(allHeaders, () => {
+  if (visibleColumns.value !== null) {
+    const valid = visibleColumns.value.filter(h => allHeaders.value.includes(h));
+    if (valid.length === 0) {
+      visibleColumns.value = null;
+    }
+  }
+});
+
+function toggleSort(header: string) {
+  if (sortKey.value !== header) {
+    sortKey.value = header;
+    sortOrder.value = 'asc';
+  }
+  else if (sortOrder.value === 'asc') {
+    sortOrder.value = 'desc';
+  }
+  else {
+    sortKey.value = null;
+    sortOrder.value = null;
+  }
+}
+
+function getSortIcon(header: string) {
+  if (sortKey.value !== header || !sortOrder.value) {
+    return ArrowsSort;
+  }
+  return sortOrder.value === 'asc' ? ArrowUp : ArrowDown;
+}
+
+function isColumnVisible(header: string): boolean {
+  if (visibleColumns.value === null) {
+    return true;
+  }
+  return visibleColumns.value.includes(header);
+}
+
+function toggleColumn(header: string) {
+  const current = visibleColumns.value === null ? [...allHeaders.value] : [...visibleColumns.value];
+  const index = current.indexOf(header);
+  if (index >= 0) {
+    current.splice(index, 1);
+  }
+  else {
+    current.push(header);
+  }
+  visibleColumns.value = current;
+}
+
+function selectAllColumns() {
+  visibleColumns.value = [...allHeaders.value];
+}
+
+function clearAllColumns() {
+  visibleColumns.value = [];
+}
+
+function formatCellValue(val: any): string {
+  if (val === undefined || val === null) {
+    return '—';
+  }
+  if (typeof val === 'object') {
+    return JSON.stringify(val);
+  }
+  return String(val);
+}
 </script>
 
 <template>
@@ -283,6 +414,107 @@ const inputElement = ref<any>(null);
       </div>
     </div>
   </div>
+
+  <!-- Table View Section -->
+  <c-card mt-4 title="JSON Table View">
+    <div flex flex-col gap-4>
+      <!-- Controls Bar: Depth selector and Column visibility -->
+      <div flex flex-wrap items-center justify-between gap-3>
+        <div flex flex-wrap items-center gap-4>
+          <div flex items-center gap-2>
+            <span text-sm op-80>Depth Level:</span>
+            <c-buttons-select
+              v-model:value="headerDepth"
+              :options="depthOptions as any"
+              size="small"
+            />
+          </div>
+
+          <n-checkbox v-model:checked="useJsonPathForTable">
+            Apply JSONPath output filter
+          </n-checkbox>
+        </div>
+
+        <div flex items-center gap-2>
+          <!-- Column Visibility Popover -->
+          <n-popover trigger="click" placement="bottom-end" style="max-width: 280px">
+            <template #trigger>
+              <div>
+                <c-button size="small">
+                  <n-icon :component="Eye" mr-1 />
+                  Columns ({{ activeVisibleColumns.length }}/{{ allHeaders.length }})
+                </c-button>
+              </div>
+            </template>
+            <div flex flex-col gap-2 pa-2 style="max-height: 280px; overflow-y: auto;">
+              <div flex items-center justify-between gap-2 pb-2 style="border-bottom: 1px solid var(--n-border-color, #eee);">
+                <c-button size="small" variant="text" @click="selectAllColumns">
+                  Select All
+                </c-button>
+                <c-button size="small" variant="text" @click="clearAllColumns">
+                  Clear All
+                </c-button>
+              </div>
+              <div flex flex-col gap-1>
+                <n-checkbox
+                  v-for="header in allHeaders"
+                  :key="header"
+                  :checked="isColumnVisible(header)"
+                  @update:checked="() => toggleColumn(header)"
+                >
+                  {{ header }}
+                </n-checkbox>
+              </div>
+            </div>
+          </n-popover>
+        </div>
+      </div>
+
+      <!-- Table Container -->
+      <div v-if="!parsedJson || allHeaders.length === 0" flex justify-center py-6>
+        <n-empty description="No tabular data available" />
+      </div>
+
+      <div v-else class="json-table-wrapper">
+        <n-table :bordered="true" :single-line="false" class="json-table">
+          <thead>
+            <tr>
+              <th v-for="header in activeVisibleColumns" :key="header">
+                <div class="header-cell">
+                  <div class="header-title-bar" @click="toggleSort(header)">
+                    <span class="header-title">{{ header }}</span>
+                    <n-icon class="sort-icon" :size="14">
+                      <component :is="getSortIcon(header)" />
+                    </n-icon>
+                  </div>
+                  <n-input
+                    v-model:value="columnFilters[header]"
+                    placeholder="Filter..."
+                    size="small"
+                    clearable
+                    class="header-filter-input"
+                    @click.stop
+                  />
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-if="filteredAndSortedRows.length === 0">
+              <td :colspan="activeVisibleColumns.length" py-4 text-center style="opacity: 0.6;">
+                No matching rows found
+              </td>
+            </tr>
+            <tr v-for="(row, rowIndex) in filteredAndSortedRows" :key="rowIndex">
+              <td v-for="col in activeVisibleColumns" :key="col">
+                {{ formatCellValue(row[col]) }}
+              </td>
+            </tr>
+          </tbody>
+        </n-table>
+      </div>
+    </div>
+  </c-card>
 </template>
 
 <style lang="less" scoped>
@@ -298,5 +530,45 @@ const inputElement = ref<any>(null);
   flex-direction: column;
   gap: 8px;
   min-width: 0;
+}
+
+.json-table-wrapper {
+  overflow-x: auto;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.json-table {
+  width: 100%;
+
+  th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: var(--n-header-color, #fafafa);
+    min-width: 130px;
+  }
+
+  .header-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .header-title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    cursor: pointer;
+
+    .header-title {
+      font-weight: 600;
+    }
+
+    .sort-icon {
+      opacity: 0.7;
+    }
+  }
 }
 </style>

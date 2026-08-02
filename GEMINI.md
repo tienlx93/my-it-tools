@@ -45,9 +45,8 @@ Welcome to `my-it-tools`! This guide outlines the project structure, architectur
 - Tasks must be right-sized: a task should be large enough to represent a meaningful, independent feature or change.
 - A task that only changes a few lines of code (e.g., 3 lines) should not go through the full separate workflow of TDD, subagent dispatches, and multi-stage reviews. Combining small, related modifications into a single cohesive task is preferred to optimize speed and efficiency.
 
-### Verification Checklist before Completion
-1. **Run Linter:** `pnpm lint` must pass cleanly without warnings.
-2. **Typecheck:** `pnpm typecheck` must pass with zero compilation errors.
-3. **Run Unit Tests:** `npx vitest run --environment jsdom` must succeed with all tests passing.
+### Verification Checklist & Test Execution Rules
+1. **Scope of Verification:** Run `pnpm lint`, `pnpm typecheck`, and `npx vitest run --environment jsdom` **only** for actual code changes (`.vue`, `.ts`, `.js`, `.css`, `.less`).
+2. **Skip Non-Code Changes:** Skip lint, typecheck, and unit tests for documentation files (`*.md`), workflow files, and localization/translation files (`locales/*.yml`). Review the diff directly for correctness instead.
+3. **Avoid Redundant Re-runs:** If a task implementer subagent has already executed the verification commands and reported clean passing evidence in the task report (and no code changes occurred since), reviewer subagents and the lead agent MUST NOT re-run full unit tests or typechecks redundantly.
 
-> **Exception — doc-only changes:** If a task changes only documentation files (e.g., `README.md`, `*.yml` workflow files, files under `docs/`), skip lint, typecheck, and unit tests. Review the diff directly for correctness instead.
