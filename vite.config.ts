@@ -18,6 +18,17 @@ export default defineConfig({
   },
   test: {
     exclude: [...configDefaults.exclude, '**/*.e2e.spec.ts'],
+    deps: {
+      optimizer: {
+        web: { enabled: false },
+        ssr: { enabled: false },
+      },
+    },
+    server: {
+      deps: {
+        inline: ['@vue/test-utils'],
+      },
+    },
   },
   build: {
     target: 'esnext',

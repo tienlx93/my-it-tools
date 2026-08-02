@@ -1,3 +1,4 @@
+import { computed } from 'vue';
 import { useStyleStore } from '@/stores/style.store';
 
 export { defineThemes };
