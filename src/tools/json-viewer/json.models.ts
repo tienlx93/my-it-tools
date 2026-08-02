@@ -2,7 +2,7 @@ import { type MaybeRef, get } from '@vueuse/core';
 import JSON5 from 'json5';
 import { JSONPath } from 'jsonpath-plus';
 
-export { sortObjectKeys, formatJson, validateJson, formatAndQueryJson };
+export { sortObjectKeys, formatJson, validateJson, formatAndQueryJson, evaluateJsonPath };
 
 function sortObjectKeys<T>(obj: T): T {
   if (typeof obj !== 'object' || obj === null) {
@@ -277,4 +277,20 @@ export function filterAndSortRows(
   });
 
   return sorted;
+}
+
+function evaluateJsonPath(parsed: any, jsonPath: string): any {
+  if (!jsonPath || !jsonPath.trim() || parsed === null || parsed === undefined) {
+    return parsed;
+  }
+  try {
+    return JSONPath({
+      path: jsonPath.trim(),
+      json: parsed,
+      preventEval: true,
+    } as any);
+  }
+  catch {
+    return parsed;
+  }
 }

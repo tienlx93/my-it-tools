@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { extractTableData, filterAndSortRows, flattenObject, sortObjectKeys } from './json.models';
+import { evaluateJsonPath, extractTableData, filterAndSortRows, flattenObject, sortObjectKeys } from './json.models';
 
 describe('json models', () => {
   describe('sortObjectKeys', () => {
@@ -73,6 +73,14 @@ describe('json models', () => {
 
       const desc = filterAndSortRows(rows, {}, 'name', 'desc');
       expect(desc).toEqual([{ name: 'Cherry' }, { name: 'Banana' }, { name: 'Apple' }]);
+    });
+  });
+
+  describe('evaluateJsonPath', () => {
+    it('evaluates JSONPath selector on parsed object', () => {
+      const input = { store: { book: [{ title: 'Book 1' }, { title: 'Book 2' }] } };
+      const res = evaluateJsonPath(input, '$.store.book[*].title');
+      expect(res).toEqual(['Book 1', 'Book 2']);
     });
   });
 });

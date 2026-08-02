@@ -2,7 +2,7 @@
 import { useStorage } from '@vueuse/core';
 import { ArrowDown, ArrowUp, ArrowsSort, Bolt, Clipboard, Eye, Help, Settings, Trash } from '@vicons/tabler';
 import JSON5 from 'json5';
-import { extractTableData, filterAndSortRows, formatAndQueryJson, validateJson } from './json.models';
+import { evaluateJsonPath, extractTableData, filterAndSortRows, formatAndQueryJson, validateJson } from './json.models';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 // Reactive settings stored in local storage
@@ -115,6 +115,7 @@ const inputElement = ref<any>(null);
 
 // Table View state
 const headerDepth = ref<1 | 2 | 3>(1);
+const useJsonPathForTable = useStorage<boolean>('json-prettify:use-json-path-for-table', true);
 const visibleColumns = ref<string[] | null>(null);
 const columnFilters = ref<Record<string, string>>({});
 const sortKey = ref<string | null>(null);
@@ -140,11 +141,21 @@ const parsedJson = computed(() => {
   }
 });
 
-const extractedTableData = computed(() => {
+const targetTableJson = computed(() => {
   if (parsedJson.value === null) {
+    return null;
+  }
+  if (useJsonPathForTable.value && jsonPath.value && jsonPath.value.trim()) {
+    return evaluateJsonPath(parsedJson.value, jsonPath.value);
+  }
+  return parsedJson.value;
+});
+
+const extractedTableData = computed(() => {
+  if (targetTableJson.value === null || targetTableJson.value === undefined) {
     return { headers: [], rows: [] };
   }
-  return extractTableData(parsedJson.value, headerDepth.value);
+  return extractTableData(targetTableJson.value, headerDepth.value);
 });
 
 const allHeaders = computed(() => extractedTableData.value.headers);
@@ -409,13 +420,19 @@ function formatCellValue(val: any): string {
     <div flex flex-col gap-4>
       <!-- Controls Bar: Depth selector and Column visibility -->
       <div flex flex-wrap items-center justify-between gap-3>
-        <div flex items-center gap-2>
-          <span text-sm op-80>Depth Level:</span>
-          <c-buttons-select
-            v-model:value="headerDepth"
-            :options="depthOptions as any"
-            size="small"
-          />
+        <div flex flex-wrap items-center gap-4>
+          <div flex items-center gap-2>
+            <span text-sm op-80>Depth Level:</span>
+            <c-buttons-select
+              v-model:value="headerDepth"
+              :options="depthOptions as any"
+              size="small"
+            />
+          </div>
+
+          <n-checkbox v-model:checked="useJsonPathForTable">
+            Apply JSONPath output filter
+          </n-checkbox>
         </div>
 
         <div flex items-center gap-2>
