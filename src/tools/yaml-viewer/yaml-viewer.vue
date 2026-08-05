@@ -18,7 +18,7 @@ const rawYamlValidation = useValidation({
   source: rawYaml,
   rules: [
     {
-      validator: v => v === '' || yaml.parse(v),
+      validator: (v: string) => v === '' || yaml.parse(v),
       message: 'Provided YAML is not valid.',
     },
   ],

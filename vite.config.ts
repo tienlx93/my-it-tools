@@ -1,7 +1,7 @@
 import { URL, fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import { configDefaults } from 'vitest/config';
-import { createPlugins } from './vite.config.base';
+import { createPlugins } from './vite.config.base.ts';
 
 const baseUrl = process.env.BASE_URL ?? '/';
 

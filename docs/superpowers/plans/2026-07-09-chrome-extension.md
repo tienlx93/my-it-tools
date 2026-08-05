@@ -240,7 +240,7 @@
       <c-tooltip position="bottom" :tooltip="$t('home.support')">
         <c-button
           round
-          href="https://www.buymeacoffee.com/cthmsst"
+          href="https://buymeacoffee.com/tienledalam"
           rel="noopener"
           target="_blank"
           class="support-button"

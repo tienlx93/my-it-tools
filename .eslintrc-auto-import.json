@@ -300,6 +300,16 @@
     "onWatcherCleanup": true,
     "useId": true,
     "useModel": true,
-    "useTemplateRef": true
+    "useTemplateRef": true,
+    "createDisposableDirective": true,
+    "createRef": true,
+    "onElementRemoval": true,
+    "refManualReset": true,
+    "useCountdown": true,
+    "useCssSupports": true,
+    "useElementOverflow": true,
+    "usePreferredReducedTransparency": true,
+    "useSSRWidth": true,
+    "useTimeAgoIntl": true
   }
 }

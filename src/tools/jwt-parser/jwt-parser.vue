@@ -21,7 +21,7 @@ const validation = useValidation({
   source: rawJwt,
   rules: [
     {
-      validator: value => value.length > 0 && isNotThrowing(() => decodeJwt({ jwt: rawJwt.value })),
+      validator: (value: string) => value.length > 0 && isNotThrowing(() => decodeJwt({ jwt: rawJwt.value })),
       message: 'Invalid JWT',
     },
   ],

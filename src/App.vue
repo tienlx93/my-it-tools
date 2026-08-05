@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { syncRef } from '@vueuse/core';
 import { RouterView, useRoute } from 'vue-router';
 import { NGlobalStyle, NMessageProvider, NModal, NNotificationProvider, darkTheme } from 'naive-ui';
 import { IconBinary, IconCalendarTime, IconQrcode, IconReport } from '@tabler/icons-vue';
@@ -22,8 +23,9 @@ const themeOverrides = computed(() => (styleStore.isDarkTheme ? darkThemeOverrid
 const { locale } = useI18n();
 
 syncRef(
-  locale,
-  useStorage('locale', locale),
+  locale as Ref<string>,
+  useStorage('locale', locale.value) as Ref<string>,
+  { direction: 'both' },
 );
 
 // Selection and popup state

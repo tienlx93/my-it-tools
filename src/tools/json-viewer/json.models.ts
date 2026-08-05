@@ -1,4 +1,5 @@
-import { type MaybeRef, get } from '@vueuse/core';
+import { get } from '@vueuse/core';
+import type { MaybeRef } from 'vue';
 import JSON5 from 'json5';
 import { JSONPath } from 'jsonpath-plus';
 

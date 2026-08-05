@@ -21,7 +21,7 @@ export function createPlugins({ pwa = true, baseUrl = '/' } = {}) {
       fullInstall: true,
       strictMessage: false,
       include: [
-        resolve(__dirname, 'locales/**'),
+        resolve(import.meta.dirname, 'locales/**'),
       ],
     }),
     AutoImport({

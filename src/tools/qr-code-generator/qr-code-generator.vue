@@ -118,7 +118,7 @@ const qrcodeTerminal = computedAsync(() => {
       resolve('');
     }
   });
-});
+}, '');
 
 const filename = useQueryParam({ name: 'file', defaultValue: 'qr-code' });
 const extension = computed(() => {

@@ -21,8 +21,8 @@ const regexValidation = useValidation({
   rules: [
     {
       message: 'Invalid regex: {0}',
-      validator: value => new RegExp(value),
-      getErrorMessage: (value) => {
+      validator: (value: string) => new RegExp(value),
+      getErrorMessage: (value: string) => {
         const _ = new RegExp(value);
         return '';
       },

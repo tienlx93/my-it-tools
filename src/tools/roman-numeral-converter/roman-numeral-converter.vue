@@ -16,7 +16,7 @@ const { attrs: validationNumeral } = useValidation({
   source: inputNumeral,
   rules: [
     {
-      validator: value => value >= MIN_ARABIC_TO_ROMAN && value <= MAX_ARABIC_TO_ROMAN,
+      validator: (value: number) => value >= MIN_ARABIC_TO_ROMAN && value <= MAX_ARABIC_TO_ROMAN,
       message: `We can only convert numbers between ${MIN_ARABIC_TO_ROMAN.toLocaleString()} and ${MAX_ARABIC_TO_ROMAN.toLocaleString()}`,
     },
   ],
@@ -29,7 +29,7 @@ const validationRoman = useValidation({
   source: inputRoman,
   rules: [
     {
-      validator: value => isValidRomanNumber(value),
+      validator: (value: string) => isValidRomanNumber(value),
       message: 'The input you entered is not a valid roman number',
     },
   ],

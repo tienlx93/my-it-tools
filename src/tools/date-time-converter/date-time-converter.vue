@@ -135,7 +135,7 @@ const validation = useValidation({
   rules: [
     {
       message: 'This date is invalid for this format',
-      validator: value =>
+      validator: (value: string) =>
         withDefaultOnError(() => {
           if (value === '') {
             return true;

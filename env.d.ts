@@ -1,5 +1,6 @@
 /// <reference types="vite/client" />
 /// <reference types="vite-svg-loader" />
+/// <reference types="vue-i18n" />
 
 interface ImportMetaEnv {
   VITE_PLAUSIBLE_API_HOST: string;

@@ -52,11 +52,11 @@ const entropyValidation = useValidation({
   source: entropy,
   rules: [
     {
-      validator: value => value === '' || (value.length <= 32 && value.length >= 16 && value.length % 4 === 0),
+      validator: (value: string) => value === '' || (value.length <= 32 && value.length >= 16 && value.length % 4 === 0),
       message: 'Entropy length should be >= 16, <= 32 and be a multiple of 4',
     },
     {
-      validator: value => /^[a-fA-F0-9]*$/.test(value),
+      validator: (value: string) => /^[a-fA-F0-9]*$/.test(value),
       message: 'Entropy should be an hexadecimal string',
     },
   ],
@@ -66,7 +66,7 @@ const mnemonicValidation = useValidation({
   source: passphrase,
   rules: [
     {
-      validator: value => isNotThrowing(() => mnemonicToEntropy(value, languages[language.value])),
+      validator: (value: string) => isNotThrowing(() => mnemonicToEntropy(value, languages[language.value])),
       message: 'Invalid mnemonic',
     },
   ],

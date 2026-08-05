@@ -1,6 +1,6 @@
-import { type MaybeRef, get, watchDebounced } from '@vueuse/core';
+import { get, watchDebounced } from '@vueuse/core';
 import QRCode, { type QRCodeDataURLType, type QRCodeErrorCorrectionLevel, type QRCodeRenderersOptions, type QRCodeStringType } from 'qrcode';
-import { isRef, ref } from 'vue';
+import { type MaybeRef, isRef, ref } from 'vue';
 import type {
   CornerDotType,
   CornerSquareType,

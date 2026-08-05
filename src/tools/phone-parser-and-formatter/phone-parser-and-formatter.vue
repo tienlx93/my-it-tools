@@ -16,7 +16,7 @@ const validation = useValidation({
   source: rawPhone,
   rules: [
     {
-      validator: value => value === '' || /^[0-9 +\-()]+$/.test(value),
+      validator: (value: string) => value === '' || /^[0-9 +\-()]+$/.test(value),
       message: 'Invalid phone number',
     },
   ],

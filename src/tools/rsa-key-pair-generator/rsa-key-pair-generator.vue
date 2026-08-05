@@ -13,7 +13,7 @@ const { attrs: bitsValidationAttrs } = useValidation({
   rules: [
     {
       message: 'Bits should be 256 <= bits <= 16384 and be a multiple of 8',
-      validator: value => value >= 256 && value <= 16384 && value % 8 === 0,
+      validator: (value: number) => value >= 256 && value <= 16384 && value % 8 === 0,
     },
   ],
 });
@@ -39,11 +39,11 @@ const [certs, refreshCerts] = computedRefreshableAsync(
 
   <div>
     <h3>Public key</h3>
-    <TextareaCopyable :value="certs.publicKeyPem" />
+    <TextareaCopyable :value="certs?.publicKeyPem ?? ''" />
   </div>
 
   <div>
     <h3>Private key</h3>
-    <TextareaCopyable :value="certs.privateKeyPem" />
+    <TextareaCopyable :value="certs?.privateKeyPem ?? ''" />
   </div>
 </template>
