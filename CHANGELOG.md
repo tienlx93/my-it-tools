@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.08.06-b187e82
+
+### Bug fixes
+-  fix docker build pipeline using platform native docker (b187e82)
+
 ## Version 2026.08.06-9ad9681
 
 ### Features
