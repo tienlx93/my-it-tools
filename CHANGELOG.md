@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Version 2026.08.06-9ad9681
+
+### Features
+- **json-viewer**: add interactive JSON Table View with depth levels, column toggles, sort, filter, and JSONPath link (#52) (30c355f)
+
+### Bug fixes
+-  fix docker build error (9ad9681)
+-  fix build error (fe20a4d)
+-  fix typecheck (e72e012)
+- **deps**: update vitest after upgrade (e716e7d)
+- **deps**: update naive ui ecosystem (f8d2e88)
+
+### Continuous integration
+-  update action version (bff36ee)
+-  fix nightly build permission error (acd8444)
+
+### Chores
+- **deps**: update package lock (351640e)
+- **deps**: update vue & build ecosystem (51f93e2)
+- **deps**: update package lock (bd704c4)
+
 ## Version 2026.07.24-030440b
 
 ### Features
