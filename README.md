@@ -1,11 +1,16 @@
 <picture>
-    <source srcset="./.github/logo-dark.png" media="(prefers-color-scheme: light)">
-    <source srcset="./.github/logo-white.png" media="(prefers-color-scheme: dark)">
-    <img src="./.github/logo-dark.png" alt="logo">
+   <source srcset="./.github/logo-dark.png" media="(prefers-color-scheme: light)">
+   <source srcset="./.github/logo-white.png" media="(prefers-color-scheme: dark)">
+   <img src="./.github/logo-dark.png" alt="logo">
 </picture>
 
 <p align="center">
 Useful tools for developer and people working in IT. <a href="https://my-it-tools.web.app/">Try it!</a>
+</p>
+
+<p align="center">
+   <a href="https://github.com/tienlx93/my-it-tools/actions/workflows/ci.yml"><img src="https://github.com/tienlx93/my-it-tools/actions/workflows/ci.yml/badge.svg"></a>
+   <a href="https://github.com/tienlx93/my-it-tools/actions/workflows/releases.yml"><img src="https://github.com/tienlx93/my-it-tools/actions/workflows/releases.yml/badge.svg"></a>
 </p>
 
 ## Functionalities and roadmap
