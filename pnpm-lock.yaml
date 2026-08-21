@@ -52,7 +52,7 @@ importers:
         version: 1.3.1(vue@3.5.40(typescript@5.9.3))
       '@vueuse/integrations':
         specifier: ^14.3.0
-        version: 14.3.0(async-validator@4.2.5)(change-case@5.4.4)(fuse.js@7.5.0)(jwt-decode@4.0.0)(qrcode@1.5.1)(sortablejs@1.14.0)(vue@3.5.40(typescript@5.9.3))
+        version: 14.3.0(async-validator@4.2.5)(change-case@5.4.4)(fuse.js@7.5.0)(jwt-decode@4.0.0)(qrcode@1.5.4)(sortablejs@1.14.0)(vue@3.5.40(typescript@5.9.3))
       '@vueuse/router':
         specifier: ^14.4.0
         version: 14.4.0(vue-router@5.2.0(@vue/compiler-sfc@3.5.40)(esbuild@0.23.1)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@5.9.3)(vue@3.5.40(typescript@5.9.3)))(rolldown@1.2.1)(rollup@4.62.4)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.23.1)(jiti@2.7.0)(less@4.1.3(supports-color@7.2.0))(terser@5.49.0)(tsx@4.19.2)(yaml@2.9.0))(vue@3.5.40(typescript@5.9.3)))(vue@3.5.40(typescript@5.9.3))
@@ -172,7 +172,7 @@ importers:
         version: 0.6.4
       qrcode:
         specifier: ^1.5.1
-        version: 1.5.1
+        version: 1.5.4
       qrcode-terminal-nooctal:
         specifier: ^0.12.1
         version: 0.12.1
@@ -281,7 +281,7 @@ importers:
         version: 1.3.2
       '@types/qrcode':
         specifier: ^1.5.0
-        version: 1.5.0
+        version: 1.5.6
       '@types/turndown':
         specifier: ^5.0.6
         version: 5.0.6
@@ -2814,8 +2814,8 @@ packages:
   '@types/ps-tree@1.1.2':
     resolution: {integrity: sha512-ZREFYlpUmPQJ0esjxoG1fMvB2HNaD3z+mjqdSosZvd3RalncI9NEur73P8ZJz4YQdL64CmV1w0RuqoRUlhQRBw==}
 
-  '@types/qrcode@1.5.0':
-    resolution: {integrity: sha512-x5ilHXRxUPIMfjtM+1vf/GPTRWZ81nqscursm5gMznJeK9M0YnZ1c3bEvRLQ0zSSgedLx1J6MGL231ObQGGhaA==}
+  '@types/qrcode@1.5.6':
+    resolution: {integrity: sha512-te7NQcV2BOvdj2b1hCAHzAoMNuj65kNBMz0KBaxM6c3VGBOhU0dURQKOtH8CFNI/dsKkwlv32p26qYQTWoB5bw==}
 
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -4324,8 +4324,8 @@ packages:
     resolution: {integrity: sha512-DPi0FmjiSU5EvQV0++GFDOJ9ASQUVFh5kD+OzOnYdi7n3Wpm9hWWGfB/O2blfHcMVTL5WkQXSnRiK9makhrcnw==}
     engines: {node: '>=0.3.1'}
 
-  dijkstrajs@1.0.2:
-    resolution: {integrity: sha512-QV6PMaHTCNmKSeP6QoXhVTw9snc9VD8MulTT0Bd99Pacp4SS1cjcrYPgBPmibqKVtMJJfqC6XvOXgPMEEPH/fg==}
+  dijkstrajs@1.0.3:
+    resolution: {integrity: sha512-qiSlmBq9+BCdCA/L46dw8Uy93mloxsPSbwnm5yrKn2vMPiy8KyAskTF6zuV/j5BMsmOGZDPs7KjU+mjb670kfA==}
 
   dir-glob@3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
@@ -4432,9 +4432,6 @@ packages:
 
   emojilib@3.0.12:
     resolution: {integrity: sha512-b52zmWqBwv9juk6lKaTdYxRQSnpsnT58Sj/x6fE8fZWcsNd43gAPXUbtjLKJvVlPS9FFNCN6nB9Vh1xipnCzXw==}
-
-  encode-utf8@1.0.3:
-    resolution: {integrity: sha512-ucAnuBEhUK4boH2HjVYG5Q2mQyPorvv0u/ocS+zhdw0S8AlHYY+GOFhP1Gio5z4icpP2ivFSvhtFjQi8+T9ppw==}
 
   encodeurl@2.0.0:
     resolution: {integrity: sha512-Q0n9HRi4m6JuGIV1eFlmvJB7ZEVxu93IrMyiMsGC0lrMJMWzRgx6WGquyfQgZVb31vhGgXnfmPNNXmxnOkRBrg==}
@@ -6956,8 +6953,8 @@ packages:
     resolution: {integrity: sha512-jy/kkD0iIMDjTucB+5T6KBsnirlhegDH47vHgrj5MejchSQmi/EAMM0xMFeePgV9CJkkAapNakpVUWYgHvtdKg==}
     hasBin: true
 
-  qrcode@1.5.1:
-    resolution: {integrity: sha512-nS8NJ1Z3md8uTjKtP+SGGhfqmTCs5flU/xR623oI0JX+Wepz9R8UrRVCTBTJm3qGw3rH6jJ6MUHjkDx15cxSSg==}
+  qrcode@1.5.4:
+    resolution: {integrity: sha512-1ca71Zgiu6ORjHqFBDpnSMTR2ReToX4l1Au1VFLyVeBTFavzQnv5JxMFr3ukHVKpSrSA2MCk0lNJSykjUfz7Zg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
 
@@ -8551,8 +8548,8 @@ packages:
     resolution: {integrity: sha512-K4jVyjnBdgvc86Y6BkaLZEN933SwYOuBFkdmBu9ZfkcAbdVbpITnDmjvZ/aQjRXQrv5EPkTnD1s39GiiqbngCw==}
     engines: {node: '>= 0.4'}
 
-  which-module@2.0.0:
-    resolution: {integrity: sha512-B+enWhmw6cjfVC7kS8Pj9pCrKSc5txArRyaYGe088shv/FGWH+0Rjx/xPgtsWfsUtS27FkP697E4DDhgrgoc0Q==}
+  which-module@2.0.1:
+    resolution: {integrity: sha512-iBdZ57RDvnOR9AGBhML2vFZf7h8vmBjhoaZqODJBFWHVtKkDmKuHai3cx5PgVMrX5YDNp27AofYbAwctSS+vhQ==}
 
   which-typed-array@1.1.22:
     resolution: {integrity: sha512-fvO4ExWMFsqyhG3AiPAObMuY1lxaqgYcxbc49CNdWDDECOJNgQyvsOWVwbZc+qf3rzRtxojBK+CMEv0Ld5CYpw==}
@@ -11386,7 +11383,7 @@ snapshots:
 
   '@types/ps-tree@1.1.2': {}
 
-  '@types/qrcode@1.5.0':
+  '@types/qrcode@1.5.6':
     dependencies:
       '@types/node': 24.13.3
 
@@ -12198,7 +12195,7 @@ snapshots:
       '@unhead/vue': 1.11.20(vue@3.5.40(typescript@5.9.3))
       vue: 3.5.40(typescript@5.9.3)
 
-  '@vueuse/integrations@14.3.0(async-validator@4.2.5)(change-case@5.4.4)(fuse.js@7.5.0)(jwt-decode@4.0.0)(qrcode@1.5.1)(sortablejs@1.14.0)(vue@3.5.40(typescript@5.9.3))':
+  '@vueuse/integrations@14.3.0(async-validator@4.2.5)(change-case@5.4.4)(fuse.js@7.5.0)(jwt-decode@4.0.0)(qrcode@1.5.4)(sortablejs@1.14.0)(vue@3.5.40(typescript@5.9.3))':
     dependencies:
       '@vueuse/core': 14.3.0(vue@3.5.40(typescript@5.9.3))
       '@vueuse/shared': 14.3.0(vue@3.5.40(typescript@5.9.3))
@@ -12208,7 +12205,7 @@ snapshots:
       change-case: 5.4.4
       fuse.js: 7.5.0
       jwt-decode: 4.0.0
-      qrcode: 1.5.1
+      qrcode: 1.5.4
       sortablejs: 1.14.0
 
   '@vueuse/metadata@14.3.0': {}
@@ -13156,7 +13153,7 @@ snapshots:
 
   diff@8.0.4: {}
 
-  dijkstrajs@1.0.2: {}
+  dijkstrajs@1.0.3: {}
 
   dir-glob@3.0.1:
     dependencies:
@@ -13260,8 +13257,6 @@ snapshots:
   emoji-regex@9.2.2: {}
 
   emojilib@3.0.12: {}
-
-  encode-utf8@1.0.3: {}
 
   encodeurl@2.0.0: {}
 
@@ -16372,10 +16367,9 @@ snapshots:
 
   qrcode-terminal-nooctal@0.12.1: {}
 
-  qrcode@1.5.1:
+  qrcode@1.5.4:
     dependencies:
-      dijkstrajs: 1.0.2
-      encode-utf8: 1.0.3
+      dijkstrajs: 1.0.3
       pngjs: 5.0.0
       yargs: 15.4.1
 
@@ -18145,7 +18139,7 @@ snapshots:
       is-weakmap: 2.0.2
       is-weakset: 2.0.4
 
-  which-module@2.0.0: {}
+  which-module@2.0.1: {}
 
   which-typed-array@1.1.22:
     dependencies:
@@ -18405,7 +18399,7 @@ snapshots:
       require-main-filename: 2.0.0
       set-blocking: 2.0.0
       string-width: 4.2.3
-      which-module: 2.0.0
+      which-module: 2.0.1
       y18n: 4.0.3
       yargs-parser: 18.1.3
 
