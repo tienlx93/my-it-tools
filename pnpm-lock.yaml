@@ -236,7 +236,7 @@ importers:
         version: 0.43.1(eslint@8.57.1(supports-color@7.2.0))(supports-color@10.2.2)(typescript@5.9.3)
       '@iconify-json/mdi':
         specifier: ^1.1.50
-        version: 1.1.50
+        version: 1.2.3
       '@intlify/unplugin-vue-i18n':
         specifier: ^2.0.0
         version: 2.0.0(rollup@4.62.4)(supports-color@7.2.0)(vue-i18n@11.4.8(vue@3.5.40(typescript@5.9.3)))
@@ -1582,8 +1582,8 @@ packages:
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
     deprecated: Use @eslint/object-schema instead
 
-  '@iconify-json/mdi@1.1.50':
-    resolution: {integrity: sha512-SgbT5w5eHCdOG74ZWPz7HlTGk6VsifIJhNi6lAsxj/5Nlqt6Cz4LlQmSa9eecU9p075Jub2aAx/o7YI+GCahRQ==}
+  '@iconify-json/mdi@1.2.3':
+    resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -10101,7 +10101,7 @@ snapshots:
 
   '@humanwhocodes/object-schema@2.0.3': {}
 
-  '@iconify-json/mdi@1.1.50':
+  '@iconify-json/mdi@1.2.3':
     dependencies:
       '@iconify/types': 2.0.0
 
