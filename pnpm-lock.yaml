@@ -242,7 +242,7 @@ importers:
         version: 2.0.0(rollup@4.62.4)(supports-color@7.2.0)(vue-i18n@11.4.8(vue@3.5.40(typescript@5.9.3)))
       '@playwright/test':
         specifier: ^1.32.3
-        version: 1.32.3
+        version: 1.62.1
       '@rushstack/eslint-patch':
         specifier: ^1.2.0
         version: 1.16.1
@@ -371,7 +371,7 @@ importers:
         version: 4.0.0
       vitest:
         specifier: ^0.34.0
-        version: 0.34.6(jsdom@22.0.0(supports-color@10.2.2))(less@4.1.3(supports-color@7.2.0))(lightningcss@1.33.0)(supports-color@7.2.0)(terser@5.49.0)
+        version: 0.34.6(jsdom@22.0.0(supports-color@10.2.2))(less@4.1.3(supports-color@7.2.0))(lightningcss@1.33.0)(playwright@1.62.1)(supports-color@7.2.0)(terser@5.49.0)
       workbox-window:
         specifier: ^7.4.1
         version: 7.4.1
@@ -2128,10 +2128,9 @@ packages:
     resolution: {integrity: sha512-fdDH1LSGfZdTH2sxdpVMw31BanV28K/Gry0cVFxaNP77neJSkd82mM8ErPNYs9e+0O7SdHBLTDzDgwUuy18RnQ==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@playwright/test@1.32.3':
-    resolution: {integrity: sha512-BvWNvK0RfBriindxhLVabi8BRe3X0J9EVjKlcmhxjg4giWBD/xleLcg2dz7Tx0agu28rczjNIPQWznwzDwVsZQ==}
-    engines: {node: '>=14'}
-    deprecated: Please update to the latest version of Playwright to test up-to-date browsers.
+  '@playwright/test@1.62.1':
+    resolution: {integrity: sha512-DTcUc8qii+cpHvtOwggMtBRMjKZHXYWdw8syRYu2vtzuq4Wxphqq4NfCs5Zt44L6mA8rfDfj+PHnxFc/FeK6mQ==}
+    engines: {node: '>=20'}
     hasBin: true
 
   '@polka/url@1.0.0-next.28':
@@ -6608,9 +6607,14 @@ packages:
     engines: {node: '>=10'}
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
-  playwright-core@1.32.3:
-    resolution: {integrity: sha512-SB+cdrnu74ZIn5Ogh/8278ngEh9NEEV0vR4sJFmK04h2iZpybfbqBY0bX6+BLYWVdV12JLLI+JEFtSnYgR+mWg==}
-    engines: {node: '>=14'}
+  playwright-core@1.62.1:
+    resolution: {integrity: sha512-wPYSwEBJY9GHraISXqyqtx0na0LpO3XEX7jNDhntbex7tzUS7kLnZsOlFruFJB4Hi/rhDMjXGqHewDZ68nYZVw==}
+    engines: {node: '>=20'}
+    hasBin: true
+
+  playwright@1.62.1:
+    resolution: {integrity: sha512-0M+L3LAD8/nm554LOla9Ayx0j0tmFZ0FBcoQ7F1VuVHpM/XpiC8RcDzBQB8W5+hA8L22THxELzeF+2WcUzvcLg==}
+    engines: {node: '>=20'}
     hasBin: true
 
   pluralize@8.0.0:
@@ -10803,12 +10807,9 @@ snapshots:
 
   '@pkgr/core@0.1.2': {}
 
-  '@playwright/test@1.32.3':
+  '@playwright/test@1.62.1':
     dependencies:
-      '@types/node': 24.13.3
-      playwright-core: 1.32.3
-    optionalDependencies:
-      fsevents: 2.3.2
+      playwright: 1.62.1
 
   '@polka/url@1.0.0-next.28': {}
 
@@ -15997,7 +15998,13 @@ snapshots:
 
   plausible-tracker@0.3.8: {}
 
-  playwright-core@1.32.3: {}
+  playwright-core@1.62.1: {}
+
+  playwright@1.62.1:
+    dependencies:
+      playwright-core: 1.62.1
+    optionalDependencies:
+      fsevents: 2.3.2
 
   pluralize@8.0.0: {}
 
@@ -17903,7 +17910,7 @@ snapshots:
       tsx: 4.19.2
       yaml: 2.9.0
 
-  vitest@0.34.6(jsdom@22.0.0(supports-color@10.2.2))(less@4.1.3(supports-color@7.2.0))(lightningcss@1.33.0)(supports-color@7.2.0)(terser@5.49.0):
+  vitest@0.34.6(jsdom@22.0.0(supports-color@10.2.2))(less@4.1.3(supports-color@7.2.0))(lightningcss@1.33.0)(playwright@1.62.1)(supports-color@7.2.0)(terser@5.49.0):
     dependencies:
       '@types/chai': 4.3.20
       '@types/chai-subset': 1.3.6(@types/chai@4.3.20)
@@ -17931,6 +17938,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       jsdom: 22.0.0(supports-color@10.2.2)
+      playwright: 1.62.1
     transitivePeerDependencies:
       - less
       - lightningcss
