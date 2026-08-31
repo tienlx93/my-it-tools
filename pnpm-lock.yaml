@@ -79,7 +79,7 @@ importers:
         version: 2.59.0
       crypto-js:
         specifier: ^4.1.1
-        version: 4.1.1
+        version: 4.2.0
       date-fns:
         specifier: ^2.29.3
         version: 2.29.3
@@ -257,7 +257,7 @@ importers:
         version: 0.2.2
       '@types/crypto-js':
         specifier: ^4.1.1
-        version: 4.1.1
+        version: 4.2.2
       '@types/dompurify':
         specifier: ^3.0.5
         version: 3.0.5
@@ -2713,8 +2713,8 @@ packages:
   '@types/chrome@0.2.2':
     resolution: {integrity: sha512-8rSMZ4cvo2xmaSyQg0sN5yRL7oiDkntLoiHxUhfwQnv1mvnkrdoZ25SlNrKWmYKaeP50WvrfWj1pmc02+U9KKw==}
 
-  '@types/crypto-js@4.1.1':
-    resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
+  '@types/crypto-js@4.2.2':
+    resolution: {integrity: sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==}
 
   '@types/dompurify@3.0.5':
     resolution: {integrity: sha512-1Wg0g3BtQF7sSb27fJQAKck1HECM6zV1EB66j8JH9i3LCjYabJa0FSdiSgsD5K/RbrsR0SiraKacLB+T8ZVYAg==}
@@ -4039,8 +4039,8 @@ packages:
       srvx:
         optional: true
 
-  crypto-js@4.1.1:
-    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
+  crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
     deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   crypto-random-string@2.0.0:
@@ -11268,7 +11268,7 @@ snapshots:
       '@types/filesystem': 0.0.36
       '@types/har-format': 1.2.16
 
-  '@types/crypto-js@4.1.1': {}
+  '@types/crypto-js@4.2.2': {}
 
   '@types/dompurify@3.0.5':
     dependencies:
@@ -12862,7 +12862,7 @@ snapshots:
     optionalDependencies:
       srvx: 0.11.22
 
-  crypto-js@4.1.1: {}
+  crypto-js@4.2.0: {}
 
   crypto-random-string@2.0.0: {}
 
