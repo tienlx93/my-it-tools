@@ -112,7 +112,7 @@ importers:
         version: 4.5.4
       js-base64:
         specifier: ^3.7.6
-        version: 3.7.7
+        version: 3.9.3
       js-tiktoken:
         specifier: ^1.0.21
         version: 1.0.21
@@ -5577,8 +5577,8 @@ packages:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
     hasBin: true
 
-  js-base64@3.7.7:
-    resolution: {integrity: sha512-7rCnleh0z2CkXhH67J8K1Ytz0b2Y+yxTPL+/KOJoa20hfnVQ/3/T6W/KflYI4bRHRagNeXeU2bkNGI3v1oS/lw==}
+  js-base64@3.9.3:
+    resolution: {integrity: sha512-uwYQp+VJ38FVvtim6qNbit6e9uT6dwWQ4Y1+H9TxhW5hcHjpHwoxlR0nMpqUmIFOmu4VqMxwdJA88gIVuZJQ/g==}
 
   js-beautify@1.15.4:
     resolution: {integrity: sha512-9/KXeZUKKJwqCXUdBxFJ3vPh467OCckSBmYDwSK/EtV090K+iMJ7zx2S3HLVDIWFQdqMIsZWbnaGiba18aWhaA==}
@@ -14637,7 +14637,7 @@ snapshots:
 
   jiti@2.7.0: {}
 
-  js-base64@3.7.7: {}
+  js-base64@3.9.3: {}
 
   js-beautify@1.15.4:
     dependencies:
