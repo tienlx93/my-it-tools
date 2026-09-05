@@ -157,7 +157,7 @@ importers:
         version: 1.3.1
       oui-data:
         specifier: ^1.0.10
-        version: 1.0.10
+        version: 1.2.0
       pdf-signature-reader:
         specifier: ^1.4.2
         version: 1.4.3
@@ -6370,8 +6370,8 @@ packages:
   orderedmap@2.1.1:
     resolution: {integrity: sha512-TvAWxi0nDe1j/rtMcWcIj94+Ffe6n7zhow33h40SKxmsmozs6dz/e+EajymfoFcHd7sxNn8yHM8839uixMOV6g==}
 
-  oui-data@1.0.10:
-    resolution: {integrity: sha512-PPrr40z5/MPStTTGJ0QtSD9KtaGHmnexBQWANWLWQOZZwbNMf/VyG/Uh29LwxExd51p3S323oM3kHbjRqmBiLg==}
+  oui-data@1.2.0:
+    resolution: {integrity: sha512-93PKtTmeZB2qKqqxfkQy7vXtvzyj8CPJ0iMOkC2vSBNgpFLFqucE4aPYSAJFmCPbgBXri1KPCciGotW/ueFrIg==}
 
   own-keys@1.0.1:
     resolution: {integrity: sha512-qFOyK5PjiWZd+QQIh+1jhdb9LpxTF0qs7Pm8o5QHYZ0M3vKqSqzsZaEB6oWlxZ+q2sJBMI/Ktgd2N5ZwQoRHfg==}
@@ -8642,18 +8642,6 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  ws@8.21.1:
-    resolution: {integrity: sha512-+0NTnW77fFN/DjQi6k/Sq/Yvk4Sgajw7urW8V+asjXnRgDs9gyGkdb7EzgfhA4goXsRIZKE28fzIXBHEzhuiWw==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
   ws@8.21.3:
     resolution: {integrity: sha512-201TZ/kPWxoPr/OKWjquZR1SWKXcvxdH+e1xrx89b3YbmzLMFCLfnaG1HFIgWzJOEWZ7MvpK++odZufgYR50Rw==}
     engines: {node: '>=10.0.0'}
@@ -10395,7 +10383,7 @@ snapshots:
       vite-plugin-inspect: 11.4.1(@nuxt/kit@4.5.1(magic-string@1.1.0)(magicast@0.5.4)(oxc-parser@0.131.0)(rolldown@1.2.5)(unplugin@3.3.0(esbuild@0.23.1)(rolldown@1.2.5)(rollup@4.62.4)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.23.1)(jiti@2.7.0)(less@4.1.3(supports-color@7.2.0))(terser@5.49.0)(tsx@4.19.2)(yaml@2.9.0))))(vite@8.2.2(@types/node@24.13.3)(esbuild@0.23.1)(jiti@2.7.0)(less@4.1.3(supports-color@7.2.0))(terser@5.49.0)(tsx@4.19.2)(yaml@2.9.0))
       vite-plugin-vue-tracer: 1.4.0(vite@8.2.2(@types/node@24.13.3)(esbuild@0.23.1)(jiti@2.7.0)(less@4.1.3(supports-color@7.2.0))(terser@5.49.0)(tsx@4.19.2)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3))
       which: 6.0.1
-      ws: 8.21.1
+      ws: 8.21.3
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -15692,7 +15680,7 @@ snapshots:
 
   orderedmap@2.1.1: {}
 
-  oui-data@1.0.10: {}
+  oui-data@1.2.0: {}
 
   own-keys@1.0.1:
     dependencies:
@@ -18266,8 +18254,6 @@ snapshots:
       strip-ansi: 7.2.0
 
   wrappy@1.0.2: {}
-
-  ws@8.21.1: {}
 
   ws@8.21.3: {}
 
