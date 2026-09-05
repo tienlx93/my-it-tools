@@ -181,7 +181,7 @@ importers:
         version: 0.5.3
       sql-formatter:
         specifier: ^13.0.0
-        version: 13.0.0
+        version: 13.1.0
       turndown:
         specifier: ^7.2.4
         version: 7.2.4
@@ -6119,8 +6119,8 @@ packages:
   monaco-editor@0.43.0:
     resolution: {integrity: sha512-cnoqwQi/9fml2Szamv1XbSJieGJ1Dc8tENVMD26Kcfl7xGQWp7OBKMjlwKVGYFJ3/AXJjSOGvcqK7Ry/j9BM1Q==}
 
-  moo@0.5.2:
-    resolution: {integrity: sha512-iSAJLHYKnX41mKcJKjqvnAN9sf0LMDTXDEvFv+ffuRR9a1MIuXLjMNL6EsnDHSkKLTWNqQQ5uo61P4EbU4NU+Q==}
+  moo@0.5.3:
+    resolution: {integrity: sha512-m2fmM2dDm7GZQsY7KK2cme8agi+AAljILjQnof7p1ZMDe6dQ4bdnSMx0cPppudoeNv5hEFQirN6u+O4fDE0IWA==}
 
   mrmime@2.0.1:
     resolution: {integrity: sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==}
@@ -7409,8 +7409,8 @@ packages:
   sprintf-js@1.1.2:
     resolution: {integrity: sha512-VE0SOVEHCk7Qc8ulkWw3ntAzXuqf7S2lvwQaDLRnUeIEaKNQJzV6BwmLKhOqT61aGhfUMrXeaBk+oDGCzvhcug==}
 
-  sql-formatter@13.0.0:
-    resolution: {integrity: sha512-V21cVvge4rhn9Fa7K/fTKcmPM+x1yee6Vhq8ZwgaWh3VPBqApgsaoFB5kLAhiqRo5AmSaRyLU7LIdgnNwH01/w==}
+  sql-formatter@13.1.0:
+    resolution: {integrity: sha512-/nZQXuN7KzipFNM20ko+dHY4kOr9rymSfZLUDED8rhx3m8OK5y74jcyN+y1L51ZqHqiB0kp40VdpZP99uWvQdA==}
     hasBin: true
 
   srvx@0.11.22:
@@ -8641,18 +8641,6 @@ packages:
 
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
-
-  ws@8.21.1:
-    resolution: {integrity: sha512-+0NTnW77fFN/DjQi6k/Sq/Yvk4Sgajw7urW8V+asjXnRgDs9gyGkdb7EzgfhA4goXsRIZKE28fzIXBHEzhuiWw==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
 
   ws@8.21.3:
     resolution: {integrity: sha512-201TZ/kPWxoPr/OKWjquZR1SWKXcvxdH+e1xrx89b3YbmzLMFCLfnaG1HFIgWzJOEWZ7MvpK++odZufgYR50Rw==}
@@ -10395,7 +10383,7 @@ snapshots:
       vite-plugin-inspect: 11.4.1(@nuxt/kit@4.5.1(magic-string@1.1.0)(magicast@0.5.4)(oxc-parser@0.131.0)(rolldown@1.2.5)(unplugin@3.3.0(esbuild@0.23.1)(rolldown@1.2.5)(rollup@4.62.4)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.23.1)(jiti@2.7.0)(less@4.1.3(supports-color@7.2.0))(terser@5.49.0)(tsx@4.19.2)(yaml@2.9.0))))(vite@8.2.2(@types/node@24.13.3)(esbuild@0.23.1)(jiti@2.7.0)(less@4.1.3(supports-color@7.2.0))(terser@5.49.0)(tsx@4.19.2)(yaml@2.9.0))
       vite-plugin-vue-tracer: 1.4.0(vite@8.2.2(@types/node@24.13.3)(esbuild@0.23.1)(jiti@2.7.0)(less@4.1.3(supports-color@7.2.0))(terser@5.49.0)(tsx@4.19.2)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3))
       which: 6.0.1
-      ws: 8.21.1
+      ws: 8.21.3
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -15197,7 +15185,7 @@ snapshots:
 
   monaco-editor@0.43.0: {}
 
-  moo@0.5.2: {}
+  moo@0.5.3: {}
 
   mrmime@2.0.1: {}
 
@@ -15247,7 +15235,7 @@ snapshots:
   nearley@2.20.1:
     dependencies:
       commander: 2.20.3
-      moo: 0.5.2
+      moo: 0.5.3
       railroad-diagrams: 1.0.0
       randexp: 0.4.6
 
@@ -16859,7 +16847,7 @@ snapshots:
 
   sprintf-js@1.1.2: {}
 
-  sql-formatter@13.0.0:
+  sql-formatter@13.1.0:
     dependencies:
       argparse: 2.0.1
       get-stdin: 8.0.0
@@ -18266,8 +18254,6 @@ snapshots:
       strip-ansi: 7.2.0
 
   wrappy@1.0.2: {}
-
-  ws@8.21.1: {}
 
   ws@8.21.3: {}
 
