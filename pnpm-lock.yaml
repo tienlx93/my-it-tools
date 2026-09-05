@@ -154,7 +154,7 @@ importers:
         version: 2.0.2
       node-forge:
         specifier: ^1.3.1
-        version: 1.3.1
+        version: 1.4.0
       oui-data:
         specifier: ^1.0.10
         version: 1.0.10
@@ -278,7 +278,7 @@ importers:
         version: 24.13.3
       '@types/node-forge':
         specifier: ^1.3.2
-        version: 1.3.2
+        version: 1.3.14
       '@types/qrcode':
         specifier: ^1.5.0
         version: 1.5.6
@@ -2791,8 +2791,8 @@ packages:
   '@types/netmask@2.0.0':
     resolution: {integrity: sha512-6LjGn0BPF0gOHGuRuJ0hGfdBJLz/9K8Ikz+oRThTNc2w7CGLvwqdjAP7/CydsUeL4cxBBXAHLFfC9bMs74757Q==}
 
-  '@types/node-forge@1.3.2':
-    resolution: {integrity: sha512-TzX3ahoi9xbmaoT58smrBu7oa6dQXb/+PTNCslZyD/55tlJ/osofIMClzZsoo6buDFrg7e4DvVGkZqVgv6OLxw==}
+  '@types/node-forge@1.3.14':
+    resolution: {integrity: sha512-mhVF2BnD4BO+jtOp7z1CdzaK4mbuK0LLQYAvdOLqHTavxFNq4zA1EmYkpnFjP8HOUzedfQkRnp0E2ulSAYSzAw==}
 
   '@types/node@17.0.45':
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
@@ -6225,10 +6225,6 @@ packages:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  node-forge@1.3.1:
-    resolution: {integrity: sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==}
-    engines: {node: '>= 6.13.0'}
-
   node-forge@1.4.0:
     resolution: {integrity: sha512-LarFH0+6VfriEhqMMcLX2F7SwSXeWwnEAJEsYm5QKWchiVYVvJyV9v7UDvUv+w5HO23ZpQTXDv/GxdDdMyOuoQ==}
     engines: {node: '>= 6.13.0'}
@@ -8642,18 +8638,6 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  ws@8.21.1:
-    resolution: {integrity: sha512-+0NTnW77fFN/DjQi6k/Sq/Yvk4Sgajw7urW8V+asjXnRgDs9gyGkdb7EzgfhA4goXsRIZKE28fzIXBHEzhuiWw==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
   ws@8.21.3:
     resolution: {integrity: sha512-201TZ/kPWxoPr/OKWjquZR1SWKXcvxdH+e1xrx89b3YbmzLMFCLfnaG1HFIgWzJOEWZ7MvpK++odZufgYR50Rw==}
     engines: {node: '>=10.0.0'}
@@ -10395,7 +10379,7 @@ snapshots:
       vite-plugin-inspect: 11.4.1(@nuxt/kit@4.5.1(magic-string@1.1.0)(magicast@0.5.4)(oxc-parser@0.131.0)(rolldown@1.2.5)(unplugin@3.3.0(esbuild@0.23.1)(rolldown@1.2.5)(rollup@4.62.4)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.23.1)(jiti@2.7.0)(less@4.1.3(supports-color@7.2.0))(terser@5.49.0)(tsx@4.19.2)(yaml@2.9.0))))(vite@8.2.2(@types/node@24.13.3)(esbuild@0.23.1)(jiti@2.7.0)(less@4.1.3(supports-color@7.2.0))(terser@5.49.0)(tsx@4.19.2)(yaml@2.9.0))
       vite-plugin-vue-tracer: 1.4.0(vite@8.2.2(@types/node@24.13.3)(esbuild@0.23.1)(jiti@2.7.0)(less@4.1.3(supports-color@7.2.0))(terser@5.49.0)(tsx@4.19.2)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3))
       which: 6.0.1
-      ws: 8.21.1
+      ws: 8.21.3
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -11327,7 +11311,7 @@ snapshots:
 
   '@types/netmask@2.0.0': {}
 
-  '@types/node-forge@1.3.2':
+  '@types/node-forge@1.3.14':
     dependencies:
       '@types/node': 24.13.3
 
@@ -15407,8 +15391,6 @@ snapshots:
       fetch-blob: 3.2.0
       formdata-polyfill: 4.0.10
 
-  node-forge@1.3.1: {}
-
   node-forge@1.4.0: {}
 
   node-gyp-build@4.8.4: {}
@@ -18266,8 +18248,6 @@ snapshots:
       strip-ansi: 7.2.0
 
   wrappy@1.0.2: {}
-
-  ws@8.21.1: {}
 
   ws@8.21.3: {}
 
