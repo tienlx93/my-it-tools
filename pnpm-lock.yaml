@@ -130,7 +130,7 @@ importers:
         version: 1.13.12
       lodash:
         specifier: ^4.17.21
-        version: 4.17.21
+        version: 4.18.1
       markdown-it:
         specifier: ^14.0.0
         version: 14.1.0
@@ -5922,6 +5922,9 @@ packages:
 
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+
+  lodash@4.18.1:
+    resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
 
   log-symbols@4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
@@ -13578,7 +13581,7 @@ snapshots:
       indent-string: 4.0.0
       is-builtin-module: 3.2.1
       jsesc: 3.1.0
-      lodash: 4.17.21
+      lodash: 4.18.1
       pluralize: 8.0.0
       read-pkg-up: 7.0.1
       regexp-tree: 0.1.27
@@ -13848,7 +13851,7 @@ snapshots:
 
   figue@1.2.0:
     dependencies:
-      lodash: 4.17.21
+      lodash: 4.18.1
 
   file-entry-cache@6.0.1:
     dependencies:
@@ -14977,6 +14980,8 @@ snapshots:
 
   lodash@4.17.21: {}
 
+  lodash@4.18.1: {}
+
   log-symbols@4.1.0:
     dependencies:
       chalk: 4.1.2
@@ -15227,7 +15232,7 @@ snapshots:
       date-fns-tz: 2.0.0(date-fns@2.30.0)
       evtd: 0.2.4
       highlight.js: 11.12.0
-      lodash: 4.17.21
+      lodash: 4.18.1
       lodash-es: 4.17.21
       seemly: 0.3.6
       treemate: 0.3.11
@@ -17937,7 +17942,7 @@ snapshots:
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
       esquery: 1.7.0
-      lodash: 4.17.21
+      lodash: 4.18.1
       semver: 7.8.5
     transitivePeerDependencies:
       - supports-color
@@ -17950,7 +17955,7 @@ snapshots:
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
       esquery: 1.7.0
-      lodash: 4.17.21
+      lodash: 4.18.1
       semver: 7.8.5
     transitivePeerDependencies:
       - supports-color
@@ -18344,7 +18349,7 @@ snapshots:
   yaml-eslint-parser@1.2.2:
     dependencies:
       eslint-visitor-keys: 3.4.3
-      lodash: 4.17.21
+      lodash: 4.18.1
       yaml: 2.9.0
 
   yaml@2.9.0: {}
