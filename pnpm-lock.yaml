@@ -154,7 +154,7 @@ importers:
         version: 2.0.2
       node-forge:
         specifier: ^1.3.1
-        version: 1.3.1
+        version: 1.4.0
       oui-data:
         specifier: ^1.0.10
         version: 1.0.10
@@ -278,7 +278,7 @@ importers:
         version: 24.13.3
       '@types/node-forge':
         specifier: ^1.3.2
-        version: 1.3.2
+        version: 1.3.14
       '@types/qrcode':
         specifier: ^1.5.0
         version: 1.5.6
@@ -2791,8 +2791,8 @@ packages:
   '@types/netmask@2.0.0':
     resolution: {integrity: sha512-6LjGn0BPF0gOHGuRuJ0hGfdBJLz/9K8Ikz+oRThTNc2w7CGLvwqdjAP7/CydsUeL4cxBBXAHLFfC9bMs74757Q==}
 
-  '@types/node-forge@1.3.2':
-    resolution: {integrity: sha512-TzX3ahoi9xbmaoT58smrBu7oa6dQXb/+PTNCslZyD/55tlJ/osofIMClzZsoo6buDFrg7e4DvVGkZqVgv6OLxw==}
+  '@types/node-forge@1.3.14':
+    resolution: {integrity: sha512-mhVF2BnD4BO+jtOp7z1CdzaK4mbuK0LLQYAvdOLqHTavxFNq4zA1EmYkpnFjP8HOUzedfQkRnp0E2ulSAYSzAw==}
 
   '@types/node@17.0.45':
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
@@ -6241,10 +6241,6 @@ packages:
   node-fetch@3.3.2:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
-  node-forge@1.3.1:
-    resolution: {integrity: sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==}
-    engines: {node: '>= 6.13.0'}
 
   node-forge@1.4.0:
     resolution: {integrity: sha512-LarFH0+6VfriEhqMMcLX2F7SwSXeWwnEAJEsYm5QKWchiVYVvJyV9v7UDvUv+w5HO23ZpQTXDv/GxdDdMyOuoQ==}
@@ -11331,7 +11327,7 @@ snapshots:
 
   '@types/netmask@2.0.0': {}
 
-  '@types/node-forge@1.3.2':
+  '@types/node-forge@1.3.14':
     dependencies:
       '@types/node': 24.13.3
 
@@ -15417,8 +15413,6 @@ snapshots:
       data-uri-to-buffer: 4.0.1
       fetch-blob: 3.2.0
       formdata-polyfill: 4.0.10
-
-  node-forge@1.3.1: {}
 
   node-forge@1.4.0: {}
 
