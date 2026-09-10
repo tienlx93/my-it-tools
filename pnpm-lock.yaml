@@ -151,7 +151,7 @@ importers:
         version: 2.35.0(vue@3.5.41(typescript@5.9.3))
       netmask:
         specifier: ^2.0.2
-        version: 2.0.2
+        version: 2.1.1
       node-forge:
         specifier: ^1.3.1
         version: 1.4.0
@@ -272,7 +272,7 @@ importers:
         version: 2.1.4
       '@types/netmask':
         specifier: ^2.0.0
-        version: 2.0.0
+        version: 2.0.6
       '@types/node':
         specifier: ^24.0.0
         version: 24.13.3
@@ -2784,8 +2784,8 @@ packages:
   '@types/minimist@1.2.5':
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
 
-  '@types/netmask@2.0.0':
-    resolution: {integrity: sha512-6LjGn0BPF0gOHGuRuJ0hGfdBJLz/9K8Ikz+oRThTNc2w7CGLvwqdjAP7/CydsUeL4cxBBXAHLFfC9bMs74757Q==}
+  '@types/netmask@2.0.6':
+    resolution: {integrity: sha512-Ix9OqbTjSebDShQWvQte8++15zTgeInozzwMmH8NveMNobCRLGXdkz0ja3Z4GW3H/nUGRm0pJG6JKm2c86nJLQ==}
 
   '@types/node-forge@1.3.14':
     resolution: {integrity: sha512-mhVF2BnD4BO+jtOp7z1CdzaK4mbuK0LLQYAvdOLqHTavxFNq4zA1EmYkpnFjP8HOUzedfQkRnp0E2ulSAYSzAw==}
@@ -6186,8 +6186,8 @@ packages:
     engines: {node: '>= 4.4.x'}
     hasBin: true
 
-  netmask@2.0.2:
-    resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
+  netmask@2.1.1:
+    resolution: {integrity: sha512-eonl3sLUha+S1GzTPxychyhnUzKyeQkZ7jLjKrBagJgPla13F+uQ71HgpFefyHgqrjEbCPkDArxYsjY8/+gLKA==}
     engines: {node: '>= 0.4.0'}
 
   nitropack@2.13.4:
@@ -11311,7 +11311,7 @@ snapshots:
 
   '@types/minimist@1.2.5': {}
 
-  '@types/netmask@2.0.0': {}
+  '@types/netmask@2.0.6': {}
 
   '@types/node-forge@1.3.14':
     dependencies:
@@ -15251,7 +15251,7 @@ snapshots:
       sax: 1.6.1
     optional: true
 
-  netmask@2.0.2: {}
+  netmask@2.1.1: {}
 
   nitropack@2.13.4(@azure/identity@4.13.1(supports-color@10.2.2))(oxc-parser@0.131.0)(rolldown@1.2.5)(srvx@0.11.22)(supports-color@10.2.2)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.23.1)(jiti@2.7.0)(less@4.9.1(supports-color@10.2.2))(terser@5.49.0)(tsx@4.19.2)(yaml@2.9.0)):
     dependencies:
