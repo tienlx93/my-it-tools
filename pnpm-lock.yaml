@@ -181,7 +181,7 @@ importers:
         version: 0.5.3
       sql-formatter:
         specifier: ^13.0.0
-        version: 13.0.0
+        version: 13.1.0
       turndown:
         specifier: ^7.2.4
         version: 7.2.4
@@ -6121,8 +6121,8 @@ packages:
   monaco-editor@0.43.0:
     resolution: {integrity: sha512-cnoqwQi/9fml2Szamv1XbSJieGJ1Dc8tENVMD26Kcfl7xGQWp7OBKMjlwKVGYFJ3/AXJjSOGvcqK7Ry/j9BM1Q==}
 
-  moo@0.5.2:
-    resolution: {integrity: sha512-iSAJLHYKnX41mKcJKjqvnAN9sf0LMDTXDEvFv+ffuRR9a1MIuXLjMNL6EsnDHSkKLTWNqQQ5uo61P4EbU4NU+Q==}
+  moo@0.5.3:
+    resolution: {integrity: sha512-m2fmM2dDm7GZQsY7KK2cme8agi+AAljILjQnof7p1ZMDe6dQ4bdnSMx0cPppudoeNv5hEFQirN6u+O4fDE0IWA==}
 
   mrmime@2.0.1:
     resolution: {integrity: sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==}
@@ -7411,8 +7411,8 @@ packages:
   sprintf-js@1.1.2:
     resolution: {integrity: sha512-VE0SOVEHCk7Qc8ulkWw3ntAzXuqf7S2lvwQaDLRnUeIEaKNQJzV6BwmLKhOqT61aGhfUMrXeaBk+oDGCzvhcug==}
 
-  sql-formatter@13.0.0:
-    resolution: {integrity: sha512-V21cVvge4rhn9Fa7K/fTKcmPM+x1yee6Vhq8ZwgaWh3VPBqApgsaoFB5kLAhiqRo5AmSaRyLU7LIdgnNwH01/w==}
+  sql-formatter@13.1.0:
+    resolution: {integrity: sha512-/nZQXuN7KzipFNM20ko+dHY4kOr9rymSfZLUDED8rhx3m8OK5y74jcyN+y1L51ZqHqiB0kp40VdpZP99uWvQdA==}
     hasBin: true
 
   srvx@0.11.22:
@@ -15179,7 +15179,7 @@ snapshots:
 
   monaco-editor@0.43.0: {}
 
-  moo@0.5.2: {}
+  moo@0.5.3: {}
 
   mrmime@2.0.1: {}
 
@@ -15232,7 +15232,7 @@ snapshots:
   nearley@2.20.1:
     dependencies:
       commander: 2.20.3
-      moo: 0.5.2
+      moo: 0.5.3
       railroad-diagrams: 1.0.0
       randexp: 0.4.6
 
@@ -16852,7 +16852,7 @@ snapshots:
 
   sprintf-js@1.1.2: {}
 
-  sql-formatter@13.0.0:
+  sql-formatter@13.1.0:
     dependencies:
       argparse: 2.0.1
       get-stdin: 8.0.0
