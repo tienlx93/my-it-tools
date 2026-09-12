@@ -190,7 +190,7 @@ importers:
         version: 1.0.41
       ulid:
         specifier: ^2.3.0
-        version: 2.3.0
+        version: 2.4.0
       unicode-emoji-json:
         specifier: ^0.4.0
         version: 0.4.0
@@ -7819,8 +7819,8 @@ packages:
   ufo@1.6.4:
     resolution: {integrity: sha512-JFNbkD1Svwe0KvGi8GOeLcP4kAWQ609twvCdcHxq1oSL8svv39ZuSvajcD8B+5D0eL4+s1Is2D/O6KN3qcTeRA==}
 
-  ulid@2.3.0:
-    resolution: {integrity: sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==}
+  ulid@2.4.0:
+    resolution: {integrity: sha512-fIRiVTJNcSRmXKPZtGzFQv9WRrZ3M9eoptl/teFJvjOzmpU+/K/JH6HZ8deBfb5vMEpicJcLn7JmvdknlMq7Zg==}
     hasBin: true
 
   ultrahtml@1.7.0:
@@ -17304,7 +17304,7 @@ snapshots:
 
   ufo@1.6.4: {}
 
-  ulid@2.3.0: {}
+  ulid@2.4.0: {}
 
   ultrahtml@1.7.0: {}
 
